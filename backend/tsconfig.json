@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "outDir": "./build/",
+    "noImplicitAny": true, // подсвечивает все места где не указан тип
+    "module": "es6", //указываем спецификацию в которой пишем код
+    "target": "es5", // указываем спецификация в которую транспилируем код
+    "allowJs": true, // разрешаем компилятору обрабатывать js файлы
+    "moduleResolution": "node", // Разрешаю использование модулей node.js. Теперь поиск пакетов происходит в node_modules
+    "esModuleInterop": true, // позволяет работать с пакетами, которые используют common js, возвращает пакеты как [object Object], если false возвращает undefined
+    "allowSyntheticDefaultImports": true // Если какая-либо библиотека не имеет default import, лоадеры вроде ts-loader или babel-loader автоматически создают их
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
+
+}

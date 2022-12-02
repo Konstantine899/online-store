@@ -1,31 +1,20 @@
-import path from "path";
 import webpack from "webpack";
-import nodeExternals from "webpack-node-externals";
+import { buildWebpackConfig } from "./config/webpack/buildWebpackConfig";
+import { BuildPath } from "./config/webpack/types/config";
+import path from "path";
 
-const config: webpack.Configuration = {
-  mode: "development",
-  entry: path.resolve(__dirname, "src", "index.ts"),
-  output: {
-    path: path.resolve(__dirname, "build"),
-    filename: "[name].[contenthash].js",
-    clean: true,
-  },
-  module: {
-    rules: [
-      {
-        test: /\.ts$/,
-        use: ["ts-loader"],
-        exclude: /node_modules/,
-      },
-    ],
-  },
-  resolve: {
-    extensions: [".ts", ".js"],
-  },
-
-  plugins: [new webpack.ProgressPlugin()],
-  // Выпиливаю node_modules из сборки
-  externals: [nodeExternals()],
+const paths: BuildPath = {
+  entry: path.resolve(__dirname, "src", "app", "index.ts"),
+  build: path.resolve(__dirname, "build"),
 };
+
+const mode = "development";
+const isDev = mode === "development";
+
+const config: webpack.Configuration = buildWebpackConfig({
+  mode: "development",
+  paths,
+  isDev,
+});
 
 export default config;

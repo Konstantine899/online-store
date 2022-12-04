@@ -23,7 +23,7 @@ export function buildWebpackConfig(
     },
     resolve: buildResolvers(),
 
-    plugins: buildPlugins(),
+    plugins: buildPlugins(options),
     // Выпиливаю node_modules из сборки
     externals: [nodeExternals()],
   };

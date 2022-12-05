@@ -1,13 +1,14 @@
 import express from "express";
-import { Request, Response } from "express";
+import { sequelize } from "../config/connect";
 
 const app = express();
+const start = async () => {
+  try {
+    await sequelize.authenticate();
+    app.listen(PORT, () => console.log(`Сервер запущен на порту ${PORT}`));
+  } catch (e) {
+    console.log(e);
+  }
+};
 
-app.get("/", (request: Request, response: Response) => {
-  response.send({
-    message: "hello world",
-  });
-});
-app.listen(PORT, () => {
-  console.log("server started at http://localhost:" + PORT);
-});
+start();

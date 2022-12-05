@@ -1,6 +1,6 @@
 import webpack from "webpack";
 import { buildWebpackConfig } from "./config/webpack/buildWebpackConfig";
-import { BuildEnv, BuildPath } from "./config/webpack/types/config";
+import { BuildDB, BuildEnv, BuildPath } from "./config/webpack/types/config";
 import path from "path";
 
 export default (env: BuildEnv) => {
@@ -13,11 +13,20 @@ export default (env: BuildEnv) => {
   const isDev = mode === "development";
   const PORT = env.port || 5000;
 
+  const DB: BuildDB = {
+    NAME: "online_store",
+    USER: "root",
+    PASSWORD: "4343",
+    HOST: "localhost",
+    PORT: 3306,
+  };
+
   const config: webpack.Configuration = buildWebpackConfig({
     mode: "development",
     paths,
     isDev,
     port: PORT,
+    DB,
   });
   return config;
 };

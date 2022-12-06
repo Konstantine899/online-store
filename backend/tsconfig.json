@@ -10,8 +10,11 @@
     "esModuleInterop": true, // позволяет работать с пакетами, которые используют common js, возвращает пакеты как [object Object], если false возвращает undefined
     "allowSyntheticDefaultImports": true, // Если какая-либо библиотека не имеет default import, лоадеры вроде ts-loader или babel-loader автоматически создают их
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
-
+    "emitDecoratorMetadata": true,
+    "baseUrl":".",
+    "paths": {
+      "*": ["./src/*"] // все абсолютные импорты идут из src
+    }
   },
   "ts-node": {
     "compilerOptions": {

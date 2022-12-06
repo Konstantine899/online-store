@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
-import { User } from "../../modules/user/sequelize/schema";
+import { User } from "modules/user";
 
 export const connection = new Sequelize(
   DB.NAME, // имя БД

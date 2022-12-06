@@ -1,4 +1,5 @@
-import { Column, DataType, Model, Table } from "sequelize-typescript";
+import { Column, DataType, HasMany, Model, Table } from "sequelize-typescript";
+import { Device } from "modules/device";
 
 @Table({ timestamps: true, freezeTableName: true })
 export class Device_type extends Model {
@@ -7,4 +8,5 @@ export class Device_type extends Model {
   @Column({ type: DataType.STRING, unique: true, allowNull: false }) name:
     | string
     | undefined;
+  @HasMany(() => Device, "deviceTypeId") devices: Device[] | undefined;
 }

@@ -1,4 +1,13 @@
-import { Column, DataType, Model, Table } from "sequelize-typescript";
+import {
+  Column,
+  DataType,
+  HasMany,
+  HasOne,
+  Model,
+  Table,
+} from "sequelize-typescript";
+import { Basket } from "modules/basket";
+import { Rating } from "modules/rating";
 
 @Table({ timestamps: true, freezeTableName: true })
 export class User extends Model {
@@ -8,4 +17,6 @@ export class User extends Model {
   @Column({ type: DataType.STRING }) password: string | undefined;
   @Column({ type: DataType.STRING, defaultValue: "USER" })
   role: string | undefined;
+  @HasOne(() => Basket, "userId") basket: Basket | undefined;
+  @HasMany(() => Rating, "userId") ratings: Rating[] | undefined;
 }

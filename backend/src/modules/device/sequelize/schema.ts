@@ -1,5 +1,17 @@
 // Модель device
-import { Column, DataType, Model, Table } from "sequelize-typescript";
+import {
+  BelongsTo,
+  Column,
+  DataType,
+  HasMany,
+  Model,
+  Table,
+} from "sequelize-typescript";
+import { Device_type } from "modules/device_type";
+import { Device_brand } from "modules/device_brand";
+import { Rating } from "modules/rating";
+import { Basket_device } from "modules/basket_device";
+import { Device_info } from "modules/device_info";
 
 @Table({ timestamps: true, freezeTableName: true })
 export class Device extends Model {
@@ -15,4 +27,17 @@ export class Device extends Model {
     | number
     | undefined;
   @Column({ type: DataType.STRING, allowNull: false }) img: string | undefined;
+  @BelongsTo(() => Device_type, "deviceTypeId") device_type:
+    | Device_type
+    | undefined;
+  @BelongsTo(() => Device_brand, "deviceBrandId") device_brand:
+    | Device_brand
+    | undefined;
+  @HasMany(() => Rating, "deviceId") ratings: Rating[] | undefined;
+  @HasMany(() => Basket_device, "deviceId") basket_devices:
+    | Basket_device[]
+    | undefined;
+  @HasMany(() => Device_info, "deviceId") device_info:
+    | Device_info[]
+    | undefined;
 }

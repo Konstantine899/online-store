@@ -1,5 +1,12 @@
 import { Sequelize } from "sequelize-typescript";
 import { User } from "modules/user";
+import { Basket } from "modules/basket";
+import { Basket_device } from "modules/basket_device";
+import { Device } from "modules/device";
+import { Device_type } from "modules/device_type";
+import { Device_brand } from "modules/device_brand";
+import { Rating } from "modules/rating";
+import { Device_info } from "modules/device_info";
 
 export const connection = new Sequelize(
   DB.NAME, // имя БД
@@ -9,6 +16,15 @@ export const connection = new Sequelize(
     dialect: "mysql",
     host: DB.HOST,
     port: DB.PORT,
-    models: [User],
+    models: [
+      User,
+      Basket,
+      Basket_device,
+      Device,
+      Device_type,
+      Device_brand,
+      Rating,
+      Device_info,
+    ],
   }
 );

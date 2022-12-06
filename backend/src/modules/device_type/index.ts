@@ -1,0 +1,1 @@
+export {Device_type} from './sequelize/schema'

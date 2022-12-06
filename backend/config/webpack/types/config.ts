@@ -2,6 +2,7 @@ export type BuildMode = "development" | "production";
 export type BuildPath = {
   entry: string;
   build: string;
+  src: string;
 };
 
 export interface BuildEnv {

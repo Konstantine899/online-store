@@ -21,7 +21,7 @@ export function buildWebpackConfig(
     module: {
       rules: buildLoaders(),
     },
-    resolve: buildResolvers(),
+    resolve: buildResolvers(options),
 
     plugins: buildPlugins(options),
     // Выпиливаю node_modules из сборки

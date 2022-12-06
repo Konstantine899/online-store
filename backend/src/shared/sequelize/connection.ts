@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize-typescript";
-import { User } from "../modules/models/models";
+import { User } from "../../modules/user/sequelize/schema";
 
-export const sequelize = new Sequelize(
+export const connection = new Sequelize(
   DB.NAME, // имя БД
   DB.USER, // имя пользователя
   DB.PASSWORD, // пароль

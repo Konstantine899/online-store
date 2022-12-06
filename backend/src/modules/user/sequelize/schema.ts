@@ -1,6 +1,6 @@
 import { Column, DataType, Model, Table } from "sequelize-typescript";
 
-interface IUser {
+export interface IUser {
   id: number;
 }
 

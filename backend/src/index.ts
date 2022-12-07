@@ -1,8 +1,12 @@
-import { initialization } from "./shared/sequelize/initialization";
-import { listen } from "./shared/express/listen";
+import {closeConnection, openConnection, synchronizationWithDataBase} from "shared/sequelize/config";
 
 export const start = async () => {
-  await initialization();
-  await listen();
+  try {
+    await openConnection();
+    await synchronizationWithDataBase({force: true,alter: true})
+    await closeConnection()
+  } catch (error) {
+    console.log(error);
+  }
 };
 start();

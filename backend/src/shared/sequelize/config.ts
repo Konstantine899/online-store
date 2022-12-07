@@ -8,8 +8,10 @@ import { Device_brand } from "modules/device_brand";
 import { Rating } from "modules/rating";
 import { Device_info } from "modules/device_info";
 import { Type_brand } from "modules/type_brand";
+import {SyncOptions} from "sequelize/types/sequelize";
+import {QueryOptions} from "sequelize/types/dialects/abstract/query-interface";
 
-export const connection = new Sequelize(
+export const config = new Sequelize(
   DB.NAME, // имя БД
   DB.USER, // имя пользователя
   DB.PASSWORD, // пароль
@@ -31,3 +33,15 @@ export const connection = new Sequelize(
     ],
   }
 );
+
+export function openConnection(options?: QueryOptions) {
+  return config.authenticate(options);
+}
+
+export function closeConnection() {
+  return config.close();
+}
+
+export function synchronizationWithDataBase(options?: SyncOptions) {
+  return config.sync(options);
+}

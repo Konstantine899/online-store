@@ -7,6 +7,7 @@ import { Device_type } from "modules/device_type";
 import { Device_brand } from "modules/device_brand";
 import { Rating } from "modules/rating";
 import { Device_info } from "modules/device_info";
+import { Type_brand } from "modules/type_brand";
 
 export const connection = new Sequelize(
   DB.NAME, // имя БД
@@ -25,6 +26,7 @@ export const connection = new Sequelize(
       Device_brand,
       Rating,
       Device_info,
+      Type_brand,
     ],
   }
 );

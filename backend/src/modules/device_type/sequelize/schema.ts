@@ -1,5 +1,7 @@
-import { Column, DataType, HasMany, Model, Table } from "sequelize-typescript";
+import {BelongsToMany, Column, DataType, HasMany, Model, Table} from "sequelize-typescript";
 import { Device } from "modules/device";
+import {Device_brand} from "modules/device_brand";
+import {Type_brand} from "modules/type_brand";
 
 @Table({ timestamps: true, freezeTableName: true })
 export class Device_type extends Model {
@@ -9,4 +11,6 @@ export class Device_type extends Model {
     | string
     | undefined;
   @HasMany(() => Device, "deviceTypeId") devices: Device[] | undefined;
+  @BelongsToMany(() => Device_brand, () => Type_brand)
+  brands: Device_brand[] | undefined;
 }

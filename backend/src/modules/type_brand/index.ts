@@ -1,0 +1,1 @@
+export {Type_brand} from './sequalize/schema'

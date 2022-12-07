@@ -1,10 +1,5 @@
-import express from "express";
+import { Express } from "express";
 
-const app = express();
-export async function listen() {
-  try {
-    app.listen(PORT, () => console.log(`Сервер запущен на порту ${PORT}`));
-  } catch (e) {
-    console.log(e);
-  }
+export function listen(app: Express) {
+  return app.listen(PORT, () => console.log(`Сервер запущен на порту ${PORT}`));
 }

@@ -17,6 +17,7 @@ export const connection = new Sequelize(
     dialect: "mysql",
     host: DB.HOST,
     port: DB.PORT,
+    logging: DB.DB_LOG ? console.log : false, // логирую в консоль только в development режиме
     models: [
       User,
       Basket,

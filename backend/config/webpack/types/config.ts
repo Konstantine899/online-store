@@ -15,6 +15,7 @@ export interface BuildDB {
   PASSWORD: string;
   HOST: string;
   PORT: number;
+  DB_LOG: boolean
 }
 
 export interface BuildOptions {

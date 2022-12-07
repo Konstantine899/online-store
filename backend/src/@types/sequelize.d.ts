@@ -5,5 +5,6 @@ declare interface IDB {
   PASSWORD: string;
   HOST: string;
   PORT: number;
+  DB_LOG: boolean
 }
 declare const DB: IDB;

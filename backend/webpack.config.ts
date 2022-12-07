@@ -20,6 +20,7 @@ export default (env: BuildEnv) => {
     PASSWORD: "4343",
     HOST: "localhost",
     PORT: 3306,
+    DB_LOG: isDev
   };
 
   const config: webpack.Configuration = buildWebpackConfig({

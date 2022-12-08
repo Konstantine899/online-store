@@ -3,11 +3,13 @@ import NodemonPlugin from "nodemon-webpack-plugin";
 import { BuildOptions } from "./types/config";
 
 export function buildPlugins(options: BuildOptions): webpack.ProgressPlugin[] {
-  const { port, DB } = options;
+  const { port, DB, isDev } = options;
   return [
     new NodemonPlugin({
+      verbose: true,
       env: {
         PORT: port,
+        NODE_ENV: isDev,
       },
     }),
     new webpack.DefinePlugin({

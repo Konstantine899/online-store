@@ -1,4 +1,4 @@
-declare const PORT: string | undefined;
+
 declare interface IDB {
   NAME: string;
   USER: string;

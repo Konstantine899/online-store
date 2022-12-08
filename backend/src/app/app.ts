@@ -1,25 +1,22 @@
 import {
-  closeConnection,
   openConnection,
   synchronizationWithDataBase,
-} from "shared/sequelize/config";
-import { listen } from "shared/express/listen";
+} from "app/sequelize/config";
 import express, { Express } from "express";
-import { useSoftware } from "shared/express/useSoftware";
+import { useSoftware } from "app/express/useSoftware";
+import { router } from "app/express/useRouter";
 
 const app = express();
 
 useSoftware(app);
 
-app.get('/', (req, res) => {
-  res.status(200).json({ message: 'Все работает!!!!' });
-});
+app.use("/shop", router);
 
 export const start = async (app: Express) => {
   try {
     await openConnection();
     await synchronizationWithDataBase({ force: true, alter: true });
-    await listen(app);
+    app.listen(PORT, () => console.log(`Сервер запущен на порту ${PORT}`));
   } catch (error) {
     console.log(error);
   }

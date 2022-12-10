@@ -1,9 +1,8 @@
 import { Router } from "express";
+import DeviceBrandController from "../controllers/deviceBrandController";
 
 const deviceBrandRouter = Router();
-deviceBrandRouter.post("/");
-deviceBrandRouter.get("/", (request, response) =>{
-    response.json({message: 'Страница Brand '})
-});
+deviceBrandRouter.post("/", DeviceBrandController.create);
+deviceBrandRouter.get("/", DeviceBrandController.getAll);
 
 export { deviceBrandRouter };

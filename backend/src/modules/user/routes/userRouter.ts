@@ -1,10 +1,10 @@
-import {Router} from "express";
-const userRouter = Router()
+import { Router } from "express";
+import UserController from "../controllers/userController";
 
-userRouter.post('/registration');
-userRouter.post('/login');
-userRouter.get('/auth', (request, response)=>{
-response.json({message:"Страница авторизации пользователя"})
-});
+const userRouter = Router();
 
-export {userRouter}
+userRouter.post("/registration", UserController.registration);
+userRouter.post("/login", UserController.login);
+userRouter.get("/auth", UserController.check);
+
+export { userRouter };

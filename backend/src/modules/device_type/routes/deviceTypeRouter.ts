@@ -1,9 +1,9 @@
 import { Router } from "express";
+import DeviceTypeController from "../controllers/deviceTypeController";
 
 const deviceTypeRouter = Router();
-deviceTypeRouter.get("/", (request, response) => {
-  response.json({ message: "Страница Type" });
-});
-deviceTypeRouter.post("/");
+
+deviceTypeRouter.post("/", DeviceTypeController.create);
+deviceTypeRouter.get("/", DeviceTypeController.getAll);
 
 export { deviceTypeRouter };

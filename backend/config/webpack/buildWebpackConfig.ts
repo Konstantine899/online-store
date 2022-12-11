@@ -15,7 +15,7 @@ export function buildWebpackConfig(
     entry: paths.entry,
     output: {
       path: paths.build,
-      filename: "[name].[contenthash].js",
+      filename: "index.js",
       clean: true,
     },
     module: {

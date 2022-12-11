@@ -5,12 +5,13 @@ import path from "path";
 
 export default (env: BuildEnv) => {
   const paths: BuildPath = {
-    entry: path.resolve(__dirname, "src","app", "app.ts"),
+    entry: path.resolve(__dirname, "src", "app", "app.ts"),
     build: path.resolve(__dirname, "build"),
     src: path.resolve(__dirname, "src"),
+    nodemon_watch: path.resolve(__dirname, "build", "index.js"),
   };
 
-  const mode = "development";
+  const mode = env.mode || "development";
   const isDev = mode === "development";
   const PORT = env.port || 5000;
 
@@ -20,7 +21,7 @@ export default (env: BuildEnv) => {
     PASSWORD: "4343",
     HOST: "localhost",
     PORT: 3306,
-    DB_LOG: isDev
+    DB_LOG: isDev,
   };
 
   const config: webpack.Configuration = buildWebpackConfig({

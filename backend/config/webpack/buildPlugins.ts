@@ -3,9 +3,11 @@ import NodemonPlugin from "nodemon-webpack-plugin";
 import { BuildOptions } from "./types/config";
 
 export function buildPlugins(options: BuildOptions): webpack.ProgressPlugin[] {
-  const { port, DB, isDev } = options;
+  const { port, DB, isDev, paths } = options;
   return [
     new NodemonPlugin({
+      watch: [paths.nodemon_watch],
+      ext: "js",
       verbose: true,
       env: {
         PORT: port,

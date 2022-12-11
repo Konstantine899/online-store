@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "start": "webpack --watch --env port=5000",
-    "dev": "concurrently \"npx tsc --watch\" \"webpack --watch --env port=5000\""
+    "build": "webpack --env mode=production",
+    "start": "webpack --watch",
+    "dev": "concurrently \"npx tsc --watch\" \"webpack --watch --env port=5000 --env mode=development\""
   },
   "keywords": [],
   "author": "",

@@ -2,11 +2,13 @@ export type BuildMode = "development" | "production";
 export type BuildPath = {
   entry: string;
   build: string;
+  nodemon_watch: string;
   src: string;
 };
 
 export interface BuildEnv {
   port: number;
+  mode: number;
 }
 
 export interface BuildDB {
@@ -15,7 +17,7 @@ export interface BuildDB {
   PASSWORD: string;
   HOST: string;
   PORT: number;
-  DB_LOG: boolean
+  DB_LOG: boolean;
 }
 
 export interface BuildOptions {

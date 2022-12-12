@@ -3,7 +3,8 @@ import DeviceTypeController from "../controllers/deviceTypeController";
 
 const deviceTypeRouter = Router();
 
-deviceTypeRouter.post("/", DeviceTypeController.create);
-deviceTypeRouter.get("/", DeviceTypeController.getAll);
+deviceTypeRouter.post("/create", DeviceTypeController.create);
+deviceTypeRouter.get("/all", DeviceTypeController.getAll);
+deviceTypeRouter.delete("/delete", DeviceTypeController.removeDeviceTypeById);
 
 export { deviceTypeRouter };

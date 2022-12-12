@@ -4,7 +4,7 @@ import {
 } from "app/sequelize/config";
 import express, { Express } from "express";
 import { useSoftware } from "app/express/useSoftware";
-import { router } from "app/express/useRouter";
+import { router } from "app/express/appRouter";
 
 const app = express();
 

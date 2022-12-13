@@ -1,1 +1,1 @@
-export {Type_brand} from './sequalize/schema'
+// export {Type_brand} from './sequalize/schema'

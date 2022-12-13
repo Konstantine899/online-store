@@ -1,2 +1,2 @@
 export { Device } from "./sequelize/schema";
-export {deviceRouter} from './routes/deviceRouter'
+export { deviceRouter } from "./routes/deviceRouter";

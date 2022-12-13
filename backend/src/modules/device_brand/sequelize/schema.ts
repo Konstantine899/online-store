@@ -1,15 +1,34 @@
-import {BelongsToMany, Column, DataType, HasMany, Model, Table} from "sequelize-typescript";
+import { DataTypes, Model } from "sequelize";
+import sequelizeConnection from "app/sequelize/config";
 import { Device } from "modules/device";
-import {Device_type} from "modules/device_type";
-import {Type_brand} from "modules/type_brand";
 
-@Table({ timestamps: true, freezeTableName: true })
-export class Device_brand extends Model {
-  @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
-  id: number | undefined;
-  @Column({ type: DataType.STRING, unique: true, allowNull: false }) name:
-    | string
-    | undefined;
-  @HasMany(() => Device, "deviceBrandId") devices: Device[] | undefined;
-  @BelongsToMany(() => Device_type, () => Type_brand)
-  types: Device_type[] | undefined;}
+interface IDeviceBrand {
+  id: number;
+  name: string;
+}
+
+export class Device_brand extends Model<IDeviceBrand> implements IDeviceBrand {
+  public id!: number;
+  public name!: string;
+  // timestamps!
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
+  public readonly deletedAt!: Date;
+}
+
+Device_brand.init(
+  {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    name: { type: DataTypes.STRING, unique: true, allowNull: false },
+  },
+  {
+    timestamps: true,
+    sequelize: sequelizeConnection,
+    freezeTableName: true,
+    paranoid: true,
+  }
+);
+
+// Ассоциации
+Device_brand.hasMany(Device, { foreignKey: "brandId" });
+Device.belongsTo(Device_brand);

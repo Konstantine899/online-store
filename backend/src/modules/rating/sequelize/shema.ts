@@ -1,18 +1,30 @@
-import {
-  BelongsTo,
-  Column,
-  DataType,
-  Model,
-  Table,
-} from "sequelize-typescript";
-import { User } from "modules/user";
-import { Device } from "modules/device";
+import { DataTypes, Model } from "sequelize";
+import sequelizeConnection from "app/sequelize/config";
 
-@Table({ timestamps: true, freezeTableName: true })
-export class Rating extends Model {
-  @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
-  id: number | undefined;
-  @Column({ type: DataType.STRING, allowNull: false }) name: string | undefined;
-  @BelongsTo(() => User, "userId") user: User | undefined;
-  @BelongsTo(() => Device, "deviceId") device: Device | undefined;
+interface IRating {
+  id: number;
+  name: string;
 }
+
+export class Rating extends Model<IRating> implements IRating {
+  public id!: number;
+  public name!: string;
+  // timestamps!
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
+  public readonly deletedAt!: Date;
+}
+
+Rating.init(
+  {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    name: { type: DataTypes.STRING, allowNull: false },
+  },
+  {
+    timestamps: true,
+    sequelize: sequelizeConnection,
+    freezeTableName: true,
+    modelName: "rating",
+    paranoid: true,
+  }
+);

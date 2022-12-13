@@ -1,19 +1,31 @@
-// Схема девайса в корзине
+import { DataTypes, Model } from "sequelize";
+import sequelizeConnection from "app/sequelize/config";
 
-import {
-  BelongsTo,
-  Column,
-  DataType,
-  Model,
-  Table,
-} from "sequelize-typescript";
-import { Basket } from "modules/basket";
-import { Device } from "modules/device";
-
-@Table({ timestamps: true, freezeTableName: true })
-export class Basket_device extends Model {
-  @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
-  id: number | undefined;
-  @BelongsTo(() => Basket, "basketId") basket: Basket | undefined;
-  @BelongsTo(() => Device, "deviceId") device: Device | undefined;
+interface IBasket_device {
+  id: number;
 }
+
+export class Basket_device
+  extends Model<IBasket_device>
+  implements IBasket_device
+{
+  public id!: number;
+
+  // timestamps!
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
+  public readonly deletedAt!: Date;
+}
+
+Basket_device.init(
+  {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  },
+  {
+    timestamps: true,
+    sequelize: sequelizeConnection,
+    freezeTableName: true,
+    modelName: "basket_device",
+    paranoid: true,
+  }
+);

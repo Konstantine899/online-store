@@ -1,13 +1,13 @@
 import { Router } from "express";
-import { userRouter } from "modules/user";
-import { deviceRouter } from "modules/device";
-import { deviceBrandRouter } from "modules/device_brand";
-import { deviceTypeRouter } from "modules/device_type";
+import { userRouter } from "modules/User";
+import { deviceRouter } from "modules/Device";
+import { deviceBrandRouter } from "modules/DeviceBrand";
+import { deviceTypeRouter } from "modules/DeviceType";
 
 const router = Router();
-router.use("/user", userRouter);
+router.use("/User", userRouter);
 router.use("/type", deviceTypeRouter);
 router.use("/brand", deviceBrandRouter);
-router.use("/device", deviceRouter);
+router.use("/Device", deviceRouter);
 
 export { router };

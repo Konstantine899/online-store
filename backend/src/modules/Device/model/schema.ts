@@ -50,10 +50,10 @@ Device.init(
 );
 
 Device.hasMany(Rating, { foreignKey: "deviceId" });
-Rating.belongsTo(Device);
+Rating.belongsTo(Device, { foreignKey: "deviceId" });
 
 Device.hasMany(BasketDevice, { foreignKey: "deviceId" });
-BasketDevice.belongsTo(Device);
+BasketDevice.belongsTo(Device, { foreignKey: "deviceId" });
 
 Device.hasMany(DeviceInfo, { foreignKey: "deviceId" });
-DeviceInfo.belongsTo(Device);
+DeviceInfo.belongsTo(Device, { foreignKey: "deviceId" });

@@ -46,6 +46,6 @@ User.init(
 
 // Асоциации
 User.hasOne(Basket, { foreignKey: "userId" });
-Basket.belongsTo(User);
+Basket.belongsTo(User, { foreignKey: "userId" });
 User.hasMany(Rating, { foreignKey: "userId" });
-Rating.belongsTo(User);
+Rating.belongsTo(User, { foreignKey: "userId" });

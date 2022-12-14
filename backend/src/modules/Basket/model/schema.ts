@@ -34,5 +34,5 @@ Basket.init(
 );
 
 //Ассоциации
-// Basket.hasMany(BasketDevice, { foreignKey: "basketId" });
-// BasketDevice.belongsTo(Basket, { foreignKey: "basketDeviceId" });
+Basket.hasMany(BasketDevice, { foreignKey: "BasketId" });
+BasketDevice.belongsTo(Basket);

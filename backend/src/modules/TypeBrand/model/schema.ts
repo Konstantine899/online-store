@@ -32,11 +32,11 @@ TypeBrand.init(
   }
 );
 
-// Device_type.belongsToMany(DeviceBrand, {
-//   through: TypeBrand,
-//   foreignKey: "brandId",
-// });
-// DeviceBrand.belongsToMany(Device_type, {
-//   through: TypeBrand,
-//   foreignKey: "typeId",
-// });
+Device_type.belongsToMany(DeviceBrand, {
+  through: TypeBrand,
+  foreignKey: "deviceTypeId",
+});
+DeviceBrand.belongsToMany(Device_type, {
+  through: TypeBrand,
+  foreignKey: "deviceBrandId",
+});

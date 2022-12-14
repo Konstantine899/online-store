@@ -43,5 +43,5 @@ Device_type.init(
 
 //Ассоциации
 
-// Device_type.hasMany(Device, { foreignKey: "deviceId" });
-// Device.belongsTo(Device_type, { foreignKey: "deviceTypeId" });
+Device_type.hasMany(Device, { foreignKey: "deviceTypeId" });
+Device.belongsTo(Device_type);

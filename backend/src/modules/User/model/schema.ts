@@ -45,7 +45,8 @@ User.init(
 );
 
 // Асоциации
-User.hasOne(Basket, { foreignKey: "userId" });
-Basket.belongsTo(User, { foreignKey: "userId" });
-User.hasMany(Rating, { foreignKey: "userId" });
-Rating.belongsTo(User, { foreignKey: "userId" });
+User.hasOne(Basket, { foreignKey: { name: "userId", allowNull: false }, });
+Basket.belongsTo(User, { foreignKey: { name: "userId", allowNull: false } });
+
+User.hasMany(Rating, { foreignKey: { name: "userId", allowNull: false } });
+Rating.belongsTo(User, { foreignKey: { name: "userId", allowNull: false } });

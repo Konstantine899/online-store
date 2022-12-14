@@ -16,7 +16,7 @@ app.use(ErrorHandlingMiddleware); // не забывай что обработч
 export const start = async (app: Express) => {
   try {
     await openConnection();
-    await dbInit({ alter: true });
+    await dbInit({ alter: true, force:false });
     app.listen(PORT, () => console.log(`Сервер запущен на порту ${PORT}`));
   } catch (error) {
     console.log(error);

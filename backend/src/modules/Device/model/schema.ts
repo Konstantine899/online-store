@@ -49,11 +49,21 @@ Device.init(
   }
 );
 
-Device.hasMany(Rating, { foreignKey: "deviceId" });
-Rating.belongsTo(Device, { foreignKey: "deviceId" });
+Device.hasMany(Rating, { foreignKey: { name: "deviceId", allowNull: false } });
+Rating.belongsTo(Device, {
+  foreignKey: { name: "deviceId", allowNull: false },
+});
 
-Device.hasMany(BasketDevice, { foreignKey: "deviceId" });
-BasketDevice.belongsTo(Device, { foreignKey: "deviceId" });
+Device.hasMany(BasketDevice, {
+  foreignKey: { name: "deviceId", allowNull: false },
+});
+BasketDevice.belongsTo(Device, {
+  foreignKey: { name: "deviceId", allowNull: false },
+});
 
-Device.hasMany(DeviceInfo, { foreignKey: "deviceId" });
-DeviceInfo.belongsTo(Device, { foreignKey: "deviceId" });
+Device.hasMany(DeviceInfo, {
+  foreignKey: { name: "deviceId", allowNull: false },
+});
+DeviceInfo.belongsTo(Device, {
+  foreignKey: { name: "deviceId", allowNull: false },
+});

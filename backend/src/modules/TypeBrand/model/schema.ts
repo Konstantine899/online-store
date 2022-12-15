@@ -34,9 +34,17 @@ TypeBrand.init(
 
 Device_type.belongsToMany(DeviceBrand, {
   through: TypeBrand,
-  foreignKey: {name:"deviceTypeId", allowNull:false},
+  foreignKey: {
+    name: "deviceTypeId",
+    allowNull: false,
+    field: "device_type_id",
+  },
 });
 DeviceBrand.belongsToMany(Device_type, {
   through: TypeBrand,
-  foreignKey: {name:"deviceBrandId", allowNull: false},
+  foreignKey: {
+    name: "deviceBrandId",
+    allowNull: false,
+    field: "device_brand_id",
+  },
 });

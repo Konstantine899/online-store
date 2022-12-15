@@ -43,5 +43,11 @@ Device_type.init(
 
 //Ассоциации
 
-Device_type.hasMany(Device, { foreignKey: { name: "deviceTypeId" } });
-Device.belongsTo(Device_type, { foreignKey: { name: "deviceTypeId" } });
+Device_type.hasMany(Device, {
+  foreignKey: {
+    name: "deviceTypeId",
+    allowNull: false,
+    field: "device_type_id",
+  },
+});
+Device.belongsTo(Device_type);

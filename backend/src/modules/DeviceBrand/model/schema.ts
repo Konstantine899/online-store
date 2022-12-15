@@ -42,8 +42,10 @@ DeviceBrand.init(
 
 // Ассоциации
 DeviceBrand.hasMany(Device, {
-  foreignKey: { name: "deviceBrandId", allowNull: false },
+  foreignKey: {
+    name: "deviceBrandId",
+    allowNull: false,
+    field: "device_type_id",
+  },
 });
-Device.belongsTo(DeviceBrand, {
-  foreignKey: { name: "deviceBrandId", allowNull: false },
-});
+Device.belongsTo(DeviceBrand);

@@ -13,3 +13,12 @@ export const createDeviceType = async (
 export const getAllDevicesTypes = async (): Promise<IDeviceTypeOutput[]> => {
   return await DeviceType.findAll();
 };
+
+export const deleteByIdDeviceType = async (
+  id: number
+): Promise<IDeviceTypeOutput[]> => {
+  await DeviceType.destroy({
+    where: { id },
+  });
+  return await DeviceType.findAll();
+};

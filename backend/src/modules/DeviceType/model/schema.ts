@@ -37,7 +37,6 @@ DeviceType.init(
     sequelize: sequelizeConnection,
     freezeTableName: true,
     modelName: "device_type",
-    paranoid: true,
   }
 );
 

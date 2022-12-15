@@ -1,6 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import ApiError from "shared/api/ApiError/ApiError";
-import { createDeviceType, getAllDevicesTypes } from "../dal/dataAccess";
+import {
+  createDeviceType,
+  deleteByIdDeviceType,
+  getAllDevicesTypes,
+} from "../dal/dataAccess";
 
 class DeviceTypeController {
   async create(request: Request, response: Response, next: NextFunction) {
@@ -30,15 +34,22 @@ class DeviceTypeController {
     }
   }
 
-  async removeDeviceTypeById(request: Request, response: Response) {
+  async removeDeviceTypeById(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) {
     try {
-      const id = request.query.id;
+      const id = Number(request.query.id);
 
-      if (!id) throw new Error("id не указан");
+      if (!id) {
+        return next(
+          ApiError.badRequest("При удалении данных произошла ошибка")
+        );
+      }
 
-      // Далее должна быть логика удаленияиз БД
-      // Т.к. type связян с другими таблицами
-      // то нужно реализовать каскадное удаление, удаление всех устройст связанных с данным type
+      const result = await deleteByIdDeviceType(id);
+      return response.json(result);
     } catch (error) {
       console.log(error);
     }

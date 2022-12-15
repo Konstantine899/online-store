@@ -1,3 +1,4 @@
+import {ValidationError} from "sequelize";
 import { NextFunction, Request, Response } from "express";
 import ApiError from "shared/api/ApiError/ApiError";
 import {
@@ -16,7 +17,9 @@ class DeviceTypeController {
       const result = await createDeviceType({ name });
       return response.json(result);
     } catch (error) {
-      console.log(error);
+        if(error instanceof ValidationError){
+         error.errors.forEach(error => next(ApiError.internal(error.message)))
+        }
     }
   }
 

@@ -9,3 +9,7 @@ export const createDeviceType = async (
 ): Promise<IDeviceTypeOutput> => {
   return await DeviceType.create(payload);
 };
+
+export const getAllDevicesTypes = async (): Promise<IDeviceTypeOutput[]> => {
+  return await DeviceType.findAll();
+};

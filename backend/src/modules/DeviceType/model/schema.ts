@@ -14,7 +14,7 @@ export interface IDeviceTypeInput
 // Определяет возвращаемый объект из БД в методах create, update, findOne
 export interface IDeviceTypeOutput extends Required<IDeviceType> {}
 
-export class Device_type
+export class DeviceType
   extends Model<IDeviceType, IDeviceTypeInput>
   implements IDeviceType
 {
@@ -26,7 +26,7 @@ export class Device_type
   public readonly deletedAt!: Date;
 }
 
-Device_type.init(
+DeviceType.init(
   {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     name: { type: DataTypes.STRING, allowNull: false },
@@ -43,11 +43,11 @@ Device_type.init(
 
 //Ассоциации
 
-Device_type.hasMany(Device, {
+DeviceType.hasMany(Device, {
   foreignKey: {
     name: "deviceTypeId",
     allowNull: false,
     field: "device_type_id",
   },
 });
-Device.belongsTo(Device_type);
+Device.belongsTo(DeviceType);

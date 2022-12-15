@@ -5,7 +5,7 @@ import { BasketDevice } from "modules/BasketDevice";
 import { Device } from "modules/Device";
 import { DeviceBrand } from "modules/DeviceBrand";
 import { DeviceInfo } from "modules/DeviceInfo";
-import { Device_type } from "modules/DeviceType";
+import { DeviceType } from "modules/DeviceType";
 import { Rating } from "modules/Rating";
 import { TypeBrand } from "modules/TypeBrand";
 
@@ -16,7 +16,7 @@ const dbInit = (options: SyncOptions) => {
   Device.sync(options);
   DeviceBrand.sync(options);
   DeviceInfo.sync(options);
-  Device_type.sync(options);
+  DeviceType.sync(options);
   Rating.sync(options);
   TypeBrand.sync(options);
 };

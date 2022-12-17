@@ -29,7 +29,11 @@ export class DeviceType
 DeviceType.init(
   {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    name: { type: DataTypes.STRING, allowNull: false, unique: true },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: { name: "name", msg: "Такой тип устройства уже существует" },
+    },
   },
 
   {

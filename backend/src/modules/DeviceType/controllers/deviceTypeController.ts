@@ -12,7 +12,7 @@ import { IDeviceTypeInput } from "modules/DeviceType/model/schema";
 class DeviceTypeController {
   async create(request: Request, response: Response, next: NextFunction) {
     try {
-      const { name } = request.body;
+      const { name }: IDeviceTypeInput = request.body;
       if (!name) {
         return next(ApiError.badRequest("Не корректный запрос"));
       }
@@ -30,7 +30,9 @@ class DeviceTypeController {
       const result = await getAllDevicesTypes();
       if (result.length === 0) {
         return next(
-          ApiError.internal("При получении данных с сервера произошла ошибка")
+          ApiError.internal(
+            "Типы устройств не созданы. Пожалуйста создайте тип и сделайте запрос на получение еще раз"
+          )
         );
       }
       return response.json(result);
@@ -59,7 +61,7 @@ class DeviceTypeController {
 
   async remove(request: Request, response: Response, next: NextFunction) {
     try {
-      const id = Number(request.query.id);
+      const id: number = Number(request.query.id);
 
       if (!id) {
         return next(

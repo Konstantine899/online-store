@@ -3,7 +3,6 @@ import {
   IDeviceTypeInput,
   IDeviceTypeOutput,
 } from "../model/schema";
-import ApiError from "shared/api/ApiError/ApiError";
 
 export const createDeviceType = async (
   payload: IDeviceTypeInput
@@ -20,8 +19,7 @@ export const updateDeviceType = async (
   payload: Partial<IDeviceTypeInput>
 ): Promise<IDeviceTypeOutput> => {
   const deviceType = await DeviceType.findByPk(id);
-  const updateDeviceType = await (deviceType as DeviceType).update(payload);
-  return updateDeviceType;
+  return await (deviceType as DeviceType).update(payload);
 };
 
 export const deleteDeviceType = async (

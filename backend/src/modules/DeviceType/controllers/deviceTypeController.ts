@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import { createDeviceTypeDTO } from "modules/DeviceType/dto/createDeviceTypeDTO";
-import { getAllDeviceTypeDTO } from "modules/DeviceType/dto/getAllDeviceTypeDTO";
-import { updateDeviceTypeDTO } from "modules/DeviceType/dto/updateDeviceTypeDTO";
-import { removeDeviceTypeDTO } from "modules/DeviceType/dto/removeDeviceTypeDTO";
+import { createDeviceTypeDTO } from "../dto/createDeviceTypeDTO";
+import { getAllDeviceTypeDTO } from "../dto/getAllDeviceTypeDTO";
+import { updateDeviceTypeDTO } from "../dto/updateDeviceTypeDTO";
+import { removeDeviceTypeDTO } from "../dto/removeDeviceTypeDTO";
 
 class DeviceTypeController {
   async create(request: Request, response: Response, next: NextFunction) {

@@ -12,7 +12,7 @@ export const removeDeviceTypeDTO = async (
 
     if (!id) {
       return next(
-        ApiError.badRequest("При удалении типа устройства произошло ошибка")
+        ApiError.badRequest("При удалении типа устройства произошла ошибка")
       );
     }
 

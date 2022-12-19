@@ -6,7 +6,7 @@ deviceBrandRouter.post("/create", DeviceBrandController.create);
 deviceBrandRouter.get("/all", DeviceBrandController.getAll);
 deviceBrandRouter.delete(
   "/delete",
-  DeviceBrandController.removeDeviceBrandById
+  DeviceBrandController.remove
 );
 
 export { deviceBrandRouter };

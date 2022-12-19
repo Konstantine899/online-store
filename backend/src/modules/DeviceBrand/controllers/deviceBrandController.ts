@@ -1,13 +1,14 @@
 import {NextFunction, Request, Response} from "express";
 import {createDeviceBrandDTO} from '../dto/createDeviceBrandDTO'
+import {getAllDeviceBrandDTO} from "../dto/getAllDeviceBrandDTO";
 
 class DeviceBrandController {
   async create(request: Request, response: Response, next: NextFunction) {
     await createDeviceBrandDTO(request,response,next)
   }
 
-  async getAll(request: Request, response: Response) {
-    return response.json({ message: "Страница Brand" });
+  async getAll(request: Request, response: Response, next: NextFunction) {
+    return await getAllDeviceBrandDTO(request,response, next)
   }
   async removeDeviceBrandById(request: Request, response: Response) {
     try {

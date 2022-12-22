@@ -29,7 +29,7 @@ Basket.init(
     sequelize: sequelizeConnection,
     freezeTableName: true,
     tableName: "basket",
-    paranoid: true,
+    indexes: [{ name: "basket_index", fields: ["id"] }],
   }
 );
 

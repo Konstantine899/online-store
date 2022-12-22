@@ -28,7 +28,7 @@ TypeBrand.init(
     sequelize: sequelizeConnection,
     freezeTableName: true,
     modelName: "type_brand",
-    paranoid: true,
+    indexes: [{ name: "type_brand_index", fields: ["id"] }],
   }
 );
 

@@ -41,6 +41,7 @@ DeviceType.init(
     sequelize: sequelizeConnection,
     freezeTableName: true,
     modelName: "device_type",
+    indexes: [{ name: "device_type_index", fields: ["id", "name"] }],
   }
 );
 

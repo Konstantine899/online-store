@@ -40,7 +40,9 @@ User.init(
     sequelize: sequelizeConnection,
     freezeTableName: true, // имя модели в единственном числе
     modelName: "user",
-    paranoid: true,
+    indexes: [
+      { name: "user_index", fields: ["id", "email", "password", "role"] },
+    ],
   }
 );
 

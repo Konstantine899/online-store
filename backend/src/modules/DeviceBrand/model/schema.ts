@@ -36,7 +36,7 @@ DeviceBrand.init(
     sequelize: sequelizeConnection,
     freezeTableName: true,
     modelName: "device_brand",
-    paranoid: true,
+    indexes: [{ name: "device_brand_index", fields: ["id", "name"] }],
   }
 );
 

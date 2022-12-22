@@ -11,7 +11,10 @@ export const createDeviceTypeDTO = async (
 ) => {
   try {
     const { name }: IDeviceTypeInput = request.body;
-    if (!name) return next(ApiError.badRequest("При создании типа произошла ошибка"));
+    if (!name || typeof name != "string") {
+      return next(ApiError.badRequest("При создании типа произошла ошибка"));
+    }
+
     const result = await createDeviceType({ name });
     return response.json(result);
   } catch (error) {

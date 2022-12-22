@@ -10,8 +10,9 @@ export const createDeviceBrandDTO = async (
 ) => {
   try {
     const { name }: IDeviceTypeInput = request.body;
-    if (!name)
+    if (!name || typeof name != "string") {
       return next(ApiError.badRequest("При созданнии бренда произошла ошибка"));
+    }
     const result = await createDeviceBrand({ name });
     return response.json(result);
   } catch (error) {

@@ -45,26 +45,27 @@ Device.init(
     sequelize: sequelizeConnection,
     freezeTableName: true,
     modelName: "device",
-    indexes: [
-      {
-        name: "device_index",
-        fields: ["id", "name", "price", "rating", "img"],
-      },
-    ],
+
   }
 );
 
 Device.hasMany(Rating, {
   foreignKey: { name: "deviceId", allowNull: false, field: "device_id" },
+  constraints: false,
+  foreignKeyConstraint: false,
 });
 Rating.belongsTo(Device);
 
 Device.hasMany(BasketDevice, {
   foreignKey: { name: "deviceId", allowNull: false, field: "device_id" },
+  constraints: false,
+  foreignKeyConstraint: false,
 });
 BasketDevice.belongsTo(Device);
 
 Device.hasMany(DeviceInfo, {
   foreignKey: { name: "deviceId", allowNull: false, field: "device_id" },
+  constraints: false,
+  foreignKeyConstraint: false,
 });
 DeviceInfo.belongsTo(Device);

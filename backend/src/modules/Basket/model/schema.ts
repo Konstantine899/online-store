@@ -29,12 +29,13 @@ Basket.init(
     sequelize: sequelizeConnection,
     freezeTableName: true,
     tableName: "basket",
-    indexes: [{ name: "basket_index", fields: ["id"] }],
   }
 );
 
 //Ассоциации
 Basket.hasMany(BasketDevice, {
   foreignKey: { name: "basketId", allowNull: false, field: "basket_id" },
+  constraints: false,
+  foreignKeyConstraint: false,
 });
 BasketDevice.belongsTo(Basket);

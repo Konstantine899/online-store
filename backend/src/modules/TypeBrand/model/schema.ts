@@ -28,7 +28,6 @@ TypeBrand.init(
     sequelize: sequelizeConnection,
     freezeTableName: true,
     modelName: "type_brand",
-    indexes: [{ name: "type_brand_index", fields: ["id"] }],
   }
 );
 
@@ -39,6 +38,7 @@ DeviceType.belongsToMany(DeviceBrand, {
     allowNull: false,
     field: "device_type_id",
   },
+  constraints: false
 });
 DeviceBrand.belongsToMany(DeviceType, {
   through: TypeBrand,
@@ -47,4 +47,6 @@ DeviceBrand.belongsToMany(DeviceType, {
     allowNull: false,
     field: "device_brand_id",
   },
+  constraints: false,
+  foreignKeyConstraint: false,
 });

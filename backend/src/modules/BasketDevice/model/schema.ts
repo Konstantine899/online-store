@@ -32,6 +32,5 @@ BasketDevice.init(
     sequelize: sequelizeConnection,
     freezeTableName: true,
     modelName: "basket_device",
-    indexes: [{ name: "basket_device_index", fields: ["id"] }],
   }
 );

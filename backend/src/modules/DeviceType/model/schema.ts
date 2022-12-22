@@ -53,5 +53,7 @@ DeviceType.hasMany(Device, {
     allowNull: false,
     field: "device_type_id",
   },
+  constraints: false,
+  foreignKeyConstraint: false,
 });
 Device.belongsTo(DeviceType);

@@ -39,8 +39,6 @@ DeviceInfo.init(
     sequelize: sequelizeConnection,
     freezeTableName: true,
     tableName: "device_info",
-    indexes: [
-      { name: "device_info_index", fields: ["id", "title", "description"] },
-    ],
+
   }
 );

@@ -9,15 +9,19 @@ import { DeviceType } from "modules/DeviceType";
 import { Rating } from "modules/Rating";
 import { TypeBrand } from "modules/TypeBrand";
 
-const dbInit = (options: SyncOptions) => {
-  User.sync(options);
-  Basket.sync(options);
-  BasketDevice.sync(options);
-  Device.sync(options);
-  DeviceBrand.sync(options);
-  DeviceInfo.sync(options);
-  DeviceType.sync(options);
-  Rating.sync(options);
-  TypeBrand.sync(options);
+const dbInit = async (options: SyncOptions) => {
+  try {
+    await User.sync(options);
+    await Basket.sync(options);
+    await BasketDevice.sync(options);
+    await Device.sync(options);
+    await DeviceBrand.sync(options);
+    await DeviceInfo.sync(options);
+    await DeviceType.sync(options);
+    await Rating.sync(options);
+    await TypeBrand.sync(options);
+  } catch (error) {
+    console.log(error);
+  }
 };
 export default dbInit;

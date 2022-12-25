@@ -31,5 +31,6 @@ Rating.init(
     sequelize: sequelizeConnection,
     freezeTableName: true,
     modelName: "rating",
+    indexes: [{ name: "rating", fields: ["name"] }],
   }
 );

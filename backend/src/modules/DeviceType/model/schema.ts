@@ -41,7 +41,7 @@ DeviceType.init(
     sequelize: sequelizeConnection,
     freezeTableName: true,
     modelName: "device_type",
-    indexes: [{ name: "device_type_index", fields: ["id", "name"] }],
+    indexes: [{ name: "device_type", fields: ["id", "name"] }],
   }
 );
 
@@ -53,7 +53,5 @@ DeviceType.hasMany(Device, {
     allowNull: false,
     field: "device_type_id",
   },
-  constraints: false,
-  foreignKeyConstraint: false,
 });
 Device.belongsTo(DeviceType);

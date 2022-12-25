@@ -35,7 +35,5 @@ Basket.init(
 //Ассоциации
 Basket.hasMany(BasketDevice, {
   foreignKey: { name: "basketId", allowNull: false, field: "basket_id" },
-  constraints: false,
-  foreignKeyConstraint: false,
 });
 BasketDevice.belongsTo(Basket);

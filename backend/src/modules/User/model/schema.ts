@@ -40,29 +40,21 @@ User.init(
     sequelize: sequelizeConnection,
     freezeTableName: true, // имя модели в единственном числе
     modelName: "user",
-
+    indexes: [{ name: "user", fields: ["email", "password", "role"] }],
   }
 );
 
 // Асоциации
 User.hasOne(Basket, {
   foreignKey: { name: "userId", allowNull: false, field: "user_id" },
-  constraints: false,
-  foreignKeyConstraint: false,
 });
 Basket.belongsTo(User, {
   foreignKey: { name: "userId", allowNull: false, field: "user_id" },
-  constraints: false,
-  foreignKeyConstraint: false,
 });
 
 User.hasMany(Rating, {
   foreignKey: { name: "userId", allowNull: false, field: "user_id" },
-  constraints: false,
-  foreignKeyConstraint: false,
 });
 Rating.belongsTo(User, {
   foreignKey: { name: "userId", allowNull: false, field: "user_id" },
-  constraints: false,
-  foreignKeyConstraint: false,
 });

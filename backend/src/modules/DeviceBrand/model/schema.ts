@@ -36,6 +36,7 @@ DeviceBrand.init(
     sequelize: sequelizeConnection,
     freezeTableName: true,
     modelName: "device_brand",
+    indexes: [{ name: "device_brand", fields: ["name"] }],
   }
 );
 
@@ -46,7 +47,5 @@ DeviceBrand.hasMany(Device, {
     allowNull: false,
     field: "device_type_id",
   },
-  constraints: false,
-  foreignKeyConstraint: false,
 });
 Device.belongsTo(DeviceBrand);

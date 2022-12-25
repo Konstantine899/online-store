@@ -9,7 +9,7 @@ import { DeviceType } from "modules/DeviceType";
 import { Rating } from "modules/Rating";
 import { TypeBrand } from "modules/TypeBrand";
 
-const dbInit = async (options: SyncOptions) => {
+const modelInit = async (options: SyncOptions) => {
   try {
     await User.sync(options);
     await Basket.sync(options);
@@ -24,4 +24,4 @@ const dbInit = async (options: SyncOptions) => {
     console.log(error);
   }
 };
-export default dbInit;
+export default modelInit;

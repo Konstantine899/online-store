@@ -9,6 +9,7 @@ export default (env: BuildEnv) => {
     build: path.resolve(__dirname, "build"),
     src: path.resolve(__dirname, "src"),
     nodemon_watch: path.resolve(__dirname, "build", "index.js"),
+    files: path.resolve(__dirname, "src", "shared", "deviceImg"),
   };
 
   const mode = env.mode || "development";

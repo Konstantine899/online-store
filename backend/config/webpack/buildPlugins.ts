@@ -17,6 +17,7 @@ export function buildPlugins(options: BuildOptions): webpack.ProgressPlugin[] {
     new webpack.DefinePlugin({
       PORT: JSON.stringify(port),
       DB: JSON.stringify(DB),
+      FILES_PATH: JSON.stringify(paths.files),
     }),
     new webpack.ProgressPlugin(),
   ];

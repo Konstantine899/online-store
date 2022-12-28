@@ -4,6 +4,7 @@ export type BuildPath = {
   build: string;
   nodemon_watch: string;
   src: string;
+  files: string;
 };
 
 export interface BuildEnv {

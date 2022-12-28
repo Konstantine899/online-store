@@ -1,5 +1,6 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelizeConnection from "app/sequelize/config";
+import { IDeviceInfoInput } from "modules/DeviceInfo";
 
 export interface IDevice {
   id: number;
@@ -11,7 +12,11 @@ export interface IDevice {
 
 // IDeviceInput это тип объекта передаваемый в sequelize
 export interface IDeviceInput
-  extends Optional<IDevice, "id" | "name" | "price" | "rating" | "img"> {}
+  extends Optional<IDevice, "id" | "name" | "price" | "rating" | "img"> {
+  deviceBrandId: number;
+  deviceTypeId: number;
+  info: IDeviceInfoInput;
+}
 
 // Определяет возвращаемый объект из БД в методах create, update, findOne
 export interface IDeviceOutput extends Required<IDevice> {}

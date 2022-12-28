@@ -1,7 +1,10 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
+import { createDeviceDTO } from "../dto/createDeviceDTO";
 
 class DeviceController {
-  async create(request: Request, response: Response) {}
+  async create(request: Request, response: Response, next: NextFunction) {
+    await createDeviceDTO(request, response, next);
+  }
 
   async getAll(request: Request, response: Response) {
     response.json({ message: "Страница Device" });

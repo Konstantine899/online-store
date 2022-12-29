@@ -1,6 +1,8 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelizeConnection from "app/sequelize/config";
-import { IDeviceInfoInput } from "modules/DeviceInfo";
+import { DeviceInfo, IDeviceInfoInput } from "modules/DeviceInfo";
+import { Rating } from "modules/Rating";
+import { BasketDevice } from "modules/BasketDevice";
 
 export interface IDevice {
   id: number;
@@ -50,3 +52,18 @@ Device.init(
     indexes: [{ name: "device", fields: ["name", "price", "rating", "img"] }],
   }
 );
+
+Device.hasMany(Rating, {
+  foreignKey: { name: "deviceId", allowNull: false, field: "device_id" },
+});
+Rating.belongsTo(Device);
+
+Device.hasMany(BasketDevice, {
+  foreignKey: { name: "deviceId", allowNull: false, field: "device_id" },
+});
+BasketDevice.belongsTo(Device);
+
+Device.hasMany(DeviceInfo, {
+  foreignKey: { name: "deviceId", allowNull: false, field: "device_id" },
+});
+DeviceInfo.belongsTo(Device);

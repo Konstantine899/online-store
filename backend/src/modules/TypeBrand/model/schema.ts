@@ -1,5 +1,7 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelizeConnection from "app/sequelize/config";
+import { DeviceType } from "modules/DeviceType";
+import { DeviceBrand } from "modules/DeviceBrand";
 
 export interface ITypeBrand {
   id: number;
@@ -28,3 +30,20 @@ TypeBrand.init(
     modelName: "type_brand",
   }
 );
+
+DeviceType.belongsToMany(DeviceBrand, {
+  through: TypeBrand,
+  foreignKey: {
+    name: "deviceTypeId",
+    allowNull: false,
+    field: "device_type_id",
+  },
+});
+DeviceBrand.belongsToMany(DeviceType, {
+  through: TypeBrand,
+  foreignKey: {
+    name: "deviceBrandId",
+    allowNull: false,
+    field: "device_brand_id",
+  },
+});

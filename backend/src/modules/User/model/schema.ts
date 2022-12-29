@@ -1,5 +1,7 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelizeConnection from "app/sequelize/config";
+import { Basket } from "modules/Basket";
+import { Rating } from "modules/Rating";
 
 export interface IUser {
   id: number;
@@ -41,3 +43,17 @@ User.init(
     indexes: [{ name: "user", fields: ["email", "password", "role"] }],
   }
 );
+
+User.hasOne(Basket, {
+  foreignKey: { name: "userId", allowNull: false, field: "user_id" },
+});
+Basket.belongsTo(User, {
+  foreignKey: { name: "userId", allowNull: false, field: "user_id" },
+});
+
+User.hasMany(Rating, {
+  foreignKey: { name: "userId", allowNull: false, field: "user_id" },
+});
+Rating.belongsTo(User, {
+  foreignKey: { name: "userId", allowNull: false, field: "user_id" },
+});

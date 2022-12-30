@@ -29,8 +29,8 @@ export const createDeviceDTO = async (
       .toString();
 
     const result = await createDevice({
-      deviceTypeId,
-      deviceBrandId,
+      deviceTypeId: Number(deviceTypeId),
+      deviceBrandId: Number(deviceBrandId),
       price,
       name,
       info,

@@ -22,6 +22,6 @@ deviceRouter.patch(
   fileExtLimiter([".jpg", ".png", ".jpeg"]),
   DeviceController.update
 );
-deviceRouter.delete("/delete", DeviceController.removeDeviceById);
+deviceRouter.delete("/delete", DeviceController.remove);
 
 export { deviceRouter };

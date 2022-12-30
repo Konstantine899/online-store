@@ -6,14 +6,15 @@ const fileExtLimiter = (allowedExtArray: string[]) => {
   return (request: Request, response: Response, next: NextFunction) => {
     const files: any = request.files;
 
+    // Добавляю расширения файлов в массив
     const fileExtensions: string[] = [];
     Object.keys(files).forEach((key) => {
       fileExtensions.push(path.extname(files[key].name));
     });
 
-    // Определяем разрешены ли расширения фалов
-    const allowed = fileExtensions.every((ext) =>
-      allowedExtArray.includes(ext)
+    // Если условие удовлетворяет, возвращается true и элемент попадает в allowed
+    const allowed = fileExtensions.every((extension) =>
+      allowedExtArray.includes(extension)
     );
 
     if (!allowed) {

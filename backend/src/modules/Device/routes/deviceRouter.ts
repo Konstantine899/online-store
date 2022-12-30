@@ -10,7 +10,7 @@ deviceRouter.post(
   "/create",
   filePayloadExist,
   fileSizeLimiter,
-  fileExtLimiter(["jpg", "png", "jpeg"]),
+  fileExtLimiter([".jpg", ".png", ".jpeg"]),
   DeviceController.create
 );
 deviceRouter.get("/all", DeviceController.getAll);
@@ -19,7 +19,7 @@ deviceRouter.patch(
   "/update",
   filePayloadExist,
   fileSizeLimiter,
-  // fileExtLimiter(["jpg", "png", "jpeg"]),
+  fileExtLimiter([".jpg", ".png", ".jpeg"]),
   DeviceController.update
 );
 deviceRouter.delete("/delete", DeviceController.removeDeviceById);

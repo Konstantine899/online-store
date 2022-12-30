@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { createDeviceDTO } from "../dto/createDeviceDTO";
 import { getAllDeviceDTO } from "modules/Device/dto/getAllDeviceDTO";
 import { getOneDeviceDTO } from "modules/Device/dto/getOneDeviceDTO";
+import { updateDeviceDTO } from "modules/Device/dto/updateDeviceDTO";
 
 class DeviceController {
   async create(request: Request, response: Response, next: NextFunction) {
@@ -14,6 +15,10 @@ class DeviceController {
 
   async getOne(request: Request, response: Response, next: NextFunction) {
     return await getOneDeviceDTO(request, response, next);
+  }
+
+  async update(request: Request, response: Response, next: NextFunction) {
+    return await updateDeviceDTO(request, response, next);
   }
 
   async removeDeviceById(request: Request, response: Response) {

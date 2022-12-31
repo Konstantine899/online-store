@@ -4,12 +4,14 @@ import { useSoftware } from "app/express/useSoftware";
 import { router } from "app/express/appRouter";
 import ErrorHandlingMiddleware from "shared/middleware/ErrorHandlingMiddleware";
 import modelInit from "app/sequelize/modelInit";
+import path from "path";
 
 const app = express();
 
 useSoftware(app);
 
 app.use("/shop", router);
+app.use(express.static(path.resolve(FILES_PATH)));
 
 app.use(ErrorHandlingMiddleware); // не забывай что обработчик ошибок идет всегда последним
 

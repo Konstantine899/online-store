@@ -59,7 +59,7 @@ DeviceBrand.hasMany(Device, {
   foreignKey: {
     name: "deviceBrandId",
     allowNull: false,
-    field: "device_type_id",
+    field: "device_brand_id",
   },
 });
 Device.belongsTo(DeviceBrand);

@@ -10,6 +10,8 @@ export interface IDevice {
   price: number;
   rating: number;
   img: string;
+  deviceTypeId?: number;
+  deviceBrandId?: number;
 }
 
 // IDeviceInput это тип объекта передаваемый в sequelize
@@ -31,6 +33,7 @@ export class Device extends Model<IDevice, IDeviceInput> implements IDevice {
   public img!: string;
 
   // timestamps!
+
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
   public readonly deletedAt!: Date;

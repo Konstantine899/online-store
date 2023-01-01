@@ -9,8 +9,20 @@ export const getAllDeviceDTO = async (
   next: NextFunction
 ) => {
   try {
-    let { deviceBrandId, deviceTypeId }: Partial<IDeviceInput> = request.query;
-    const result = await getAllDevice({ deviceBrandId, deviceTypeId });
+    let { deviceBrandId, deviceTypeId, limit, page }: Partial<IDeviceInput> =
+      request.query;
+
+    page = Number(page) || 1;
+    limit = Number(limit) || 9;
+    // Рассчитываю смещение товара
+    let offset = page * limit - limit; // 2 * 9 - 9 отступ в 9 товаров
+
+    const result = await getAllDevice({
+      deviceBrandId,
+      deviceTypeId,
+      offset,
+      limit,
+    });
     if (result.length === 0) {
       return next(ApiError.internal("Создайте девайс"));
     }

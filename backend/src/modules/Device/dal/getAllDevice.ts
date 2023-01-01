@@ -1,19 +1,40 @@
 import { Device } from "modules/Device";
 
 interface IProps {
+  offset: number;
+  limit: number;
   deviceBrandId?: number;
   deviceTypeId?: number;
 }
 
 export const getAllDevice = async (payload: IProps): Promise<Device[]> => {
-  const { deviceTypeId, deviceBrandId } = payload;
+  const { deviceTypeId, deviceBrandId, offset, limit } = payload;
+
   let devices;
-  if (!deviceTypeId && !deviceBrandId) devices = await Device.findAll();
+
+  if (!deviceTypeId && !deviceBrandId)
+    devices = await Device.findAndCountAll({ offset, limit });
+
   if (deviceTypeId && !deviceBrandId)
-    devices = await Device.findAll({ where: { deviceTypeId } });
+    devices = await Device.findAndCountAll({
+      where: { deviceTypeId },
+      offset,
+      limit,
+    });
+
   if (!deviceTypeId && deviceBrandId)
-    devices = await Device.findAll({ where: { deviceBrandId } });
+    devices = await Device.findAndCountAll({
+      where: { deviceBrandId },
+      offset,
+      limit,
+    });
+
   if (deviceTypeId && deviceBrandId)
-    devices = await Device.findAll({ where: { deviceTypeId, deviceBrandId } });
-  return devices as Device[];
+    devices = await Device.findAndCountAll({
+      where: { deviceTypeId, deviceBrandId },
+      offset,
+      limit,
+    });
+
+  return devices as unknown as Device[];
 };

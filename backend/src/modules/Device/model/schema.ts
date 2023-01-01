@@ -12,13 +12,13 @@ export interface IDevice {
   img: string;
   deviceTypeId?: number;
   deviceBrandId?: number;
+  limit?: number;
+  page?: number;
 }
 
 // IDeviceInput это тип объекта передаваемый в sequelize
 export interface IDeviceInput
   extends Optional<IDevice, "id" | "name" | "price" | "rating" | "img"> {
-  deviceBrandId: number;
-  deviceTypeId: number;
   info: IDeviceInfoInput;
 }
 

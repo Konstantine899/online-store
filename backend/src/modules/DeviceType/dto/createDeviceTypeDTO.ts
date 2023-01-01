@@ -1,8 +1,8 @@
-import { IDeviceTypeInput } from "modules/DeviceType/model/schema";
-import ApiError from "shared/api/ApiError/ApiError";
-import { createDeviceType } from "modules/DeviceType/dal/dataAccess";
-import { ValidationError } from "sequelize";
 import { NextFunction, Request, Response } from "express";
+import { ValidationError } from "sequelize";
+import { IDeviceTypeInput } from "../model/schema";
+import { createDeviceType } from "../dal/dataAccess";
+import ApiError from "shared/api/ApiError/ApiError";
 
 export const createDeviceTypeDTO = async (
   request: Request,

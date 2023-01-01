@@ -1,6 +1,6 @@
-import ApiError from "shared/api/ApiError/ApiError";
 import { NextFunction, Response, Request } from "express";
-import { removeDevice } from "modules/Device/dal/removeDevice";
+import { removeDevice } from "../dal/removeDevice";
+import ApiError from "shared/api/ApiError/ApiError";
 
 export const removeDeviceDTO = async (
   request: Request,

@@ -1,4 +1,4 @@
-import { Device } from "modules/Device";
+import { Device } from "../model/schema";
 
 interface IProps {
   offset: number;

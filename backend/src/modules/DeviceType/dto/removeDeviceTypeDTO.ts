@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
+import { deleteDeviceType } from "../dal/dataAccess";
 import ApiError from "shared/api/ApiError/ApiError";
-import { deleteDeviceType } from "modules/DeviceType/dal/dataAccess";
 
 export const removeDeviceTypeDTO = async (
   request: Request,

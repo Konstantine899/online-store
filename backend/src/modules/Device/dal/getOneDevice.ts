@@ -1,4 +1,4 @@
-import { Device } from "modules/Device";
+import { Device } from "../model/schema";
 import { DeviceInfo } from "modules/DeviceInfo";
 
 export const getOneDevice = async (id: number): Promise<Device> => {

@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import { ValidationError } from "sequelize";
-import ApiError from "shared/api/ApiError/ApiError";
 import { IDeviceBrandInput } from "../model/schema";
 import { updateDeviceBrand } from "../dal/updateDeviceBrand";
+import ApiError from "shared/api/ApiError/ApiError";
 
 export const updateDeviceBrandDTO = async (
   request: Request,

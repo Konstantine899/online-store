@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { getOneDevice } from "modules/Device/dal/getOneDevice";
+import { getOneDevice } from "../dal/getOneDevice";
 import ApiError from "shared/api/ApiError/ApiError";
 
 export const getOneDeviceDTO = async (

@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
-import { IDeviceInput } from "modules/Device";
 import path from "path";
 import { Error } from "sequelize";
+import { updateDevice } from "../dal/updateDevice";
+import { IDeviceInput } from "../model/schema";
 import ApiError from "shared/api/ApiError/ApiError";
-import { updateDevice } from "modules/Device/dal/updateDevice";
 
 export const updateDeviceDTO = async (
   request: Request,

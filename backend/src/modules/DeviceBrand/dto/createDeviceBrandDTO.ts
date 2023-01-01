@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
+import { createDeviceBrand } from "../dal/createDeviceBrand";
 import { IDeviceTypeInput } from "modules/DeviceType/model/schema";
 import ApiError from "shared/api/ApiError/ApiError";
-import { createDeviceBrand } from "modules/DeviceBrand/dal/createDeviceBrand";
 
 export const createDeviceBrandDTO = async (
   request: Request,

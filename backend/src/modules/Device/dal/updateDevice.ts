@@ -1,4 +1,4 @@
-import { Device, IDeviceInput } from "modules/Device";
+import { Device, IDeviceInput } from "../model/schema";
 
 export const updateDevice = async (
   id: number,

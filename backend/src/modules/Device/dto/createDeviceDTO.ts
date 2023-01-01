@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express";
-import { IDeviceInput } from "modules/Device";
 import path from "path";
 import { Error } from "sequelize";
-import { createDevice } from "modules/Device/dal/createDevice";
+import { createDevice } from "../dal/createDevice";
 import ApiError from "shared/api/ApiError/ApiError";
 import { DeviceInfo } from "modules/DeviceInfo";
+import { IDeviceInput } from "../model/schema";
 
 export const createDeviceDTO = async (
   request: Request,

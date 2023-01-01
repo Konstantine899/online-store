@@ -2,7 +2,7 @@ import {
   DeviceBrand,
   IDeviceBrandInput,
   IDeviceBrandOutput,
-} from "modules/DeviceBrand";
+} from "../model/schema";
 
 export const createDeviceBrand = async (
   payload: IDeviceBrandInput

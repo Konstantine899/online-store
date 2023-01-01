@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
+import { removeDeviceBrand } from "../dal/removeDeviceBrand";
 import ApiError from "shared/api/ApiError/ApiError";
-import { removeDeviceBrand } from "modules/DeviceBrand/dal/removeDeviceBrand";
 
 export const removeDeviceBrandDTO = async (
   request: Request,

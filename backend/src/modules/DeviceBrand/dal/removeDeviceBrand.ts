@@ -1,5 +1,5 @@
+import { DeviceBrand } from "../model/schema";
 import { IDeviceTypeOutput } from "modules/DeviceType/model/schema";
-import { DeviceBrand } from "modules/DeviceBrand";
 
 export const removeDeviceBrand = async (
   id: number

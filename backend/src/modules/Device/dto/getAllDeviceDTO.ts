@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { getAllDevice } from "../dal/getAllDevice";
+import { IDeviceInput } from "../model/schema";
 import ApiError from "shared/api/ApiError/ApiError";
-import { IDeviceInput } from "modules/Device";
 
 export const getAllDeviceDTO = async (
   request: Request,

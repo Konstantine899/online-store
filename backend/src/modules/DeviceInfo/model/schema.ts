@@ -5,6 +5,7 @@ export interface IDeviceInfo {
   id: number;
   title: string;
   description: string;
+  deviceId?: number;
 }
 
 //IDeviceInfoInput это тип объекта передаваемый в sequelize

@@ -10,6 +10,7 @@ export interface IDevice {
   price: number;
   rating: number;
   img: string;
+  info?: IDeviceInfoInput;
   deviceTypeId?: number;
   deviceBrandId?: number;
   limit?: number;
@@ -18,9 +19,7 @@ export interface IDevice {
 
 // IDeviceInput это тип объекта передаваемый в sequelize
 export interface IDeviceInput
-  extends Optional<IDevice, "id" | "name" | "price" | "rating" | "img"> {
-  info: IDeviceInfoInput;
-}
+  extends Optional<IDevice, "id" | "name" | "price" | "rating" | "img"> {}
 
 // Определяет возвращаемый объект из БД в методах create, update, findOne
 export interface IDeviceOutput extends Required<IDevice> {}
@@ -67,6 +66,10 @@ Device.hasMany(BasketDevice, {
 BasketDevice.belongsTo(Device);
 
 Device.hasMany(DeviceInfo, {
+  /* as: "info" псевдоним,
+   по которому получаю данные из таблицы DeviceInfo,
+    которые использую в Device при получении конкретного device по id */
+  as: "info",
   foreignKey: { name: "deviceId", allowNull: false, field: "device_id" },
 });
 DeviceInfo.belongsTo(Device);

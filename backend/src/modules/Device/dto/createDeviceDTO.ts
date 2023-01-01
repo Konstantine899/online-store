@@ -4,6 +4,7 @@ import path from "path";
 import { Error } from "sequelize";
 import { createDevice } from "modules/Device/dal/createDevice";
 import ApiError from "shared/api/ApiError/ApiError";
+import { DeviceInfo } from "modules/DeviceInfo";
 
 export const createDeviceDTO = async (
   request: Request,
@@ -11,7 +12,7 @@ export const createDeviceDTO = async (
   next: NextFunction
 ) => {
   try {
-    const { deviceTypeId, deviceBrandId, price, name, info }: IDeviceInput =
+    let { deviceTypeId, deviceBrandId, price, name, info }: IDeviceInput =
       request.body;
     const images: any = request.files;
 
@@ -28,12 +29,19 @@ export const createDeviceDTO = async (
       .map((key) => images[key].name)
       .toString();
 
+    if (info) {
+      await DeviceInfo.create({
+        deviceId: Number(info.deviceId),
+        title: info.title,
+        description: info.description,
+      });
+    }
+
     const result = await createDevice({
       deviceTypeId: Number(deviceTypeId),
       deviceBrandId: Number(deviceBrandId),
       price,
       name,
-      info,
       img,
     });
 

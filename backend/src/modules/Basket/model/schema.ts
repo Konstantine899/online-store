@@ -4,6 +4,7 @@ import { BasketDevice } from "modules/BasketDevice";
 
 export interface IBasket {
   id: number;
+  userId?: number;
 }
 
 //IBasketInput это тип объекта передаваемый в sequelize

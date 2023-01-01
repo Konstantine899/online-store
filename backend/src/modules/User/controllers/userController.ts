@@ -1,8 +1,12 @@
 import { NextFunction, Request, Response } from "express";
 import ApiError from "shared/api/ApiError/ApiError";
+import { registrationUserDTO } from "modules/User/dto/registrationUserDTO";
 
 class UserController {
-  async registration(request: Request, response: Response) {}
+  async registration(request: Request, response: Response, next: NextFunction) {
+    return await registrationUserDTO(request, response, next);
+  }
+
   async login(request: Request, response: Response) {}
 
   // Функция авторизации пользователя

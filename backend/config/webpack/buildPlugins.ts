@@ -3,7 +3,7 @@ import NodemonPlugin from "nodemon-webpack-plugin";
 import { BuildOptions } from "./types/config";
 
 export function buildPlugins(options: BuildOptions): webpack.ProgressPlugin[] {
-  const { port, DB, isDev, paths } = options;
+  const { port, DB, isDev, paths, secretKeyForGenerateToken } = options;
   return [
     new NodemonPlugin({
       watch: [paths.nodemon_watch],
@@ -18,6 +18,7 @@ export function buildPlugins(options: BuildOptions): webpack.ProgressPlugin[] {
       PORT: JSON.stringify(port),
       DB: JSON.stringify(DB),
       FILES_PATH: JSON.stringify(paths.files),
+      SECRET_KEY: JSON.stringify(secretKeyForGenerateToken),
     }),
     new webpack.ProgressPlugin(),
   ];

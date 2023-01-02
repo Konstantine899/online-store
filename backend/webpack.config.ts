@@ -15,6 +15,7 @@ export default (env: BuildEnv) => {
   const mode = env.mode || "development";
   const isDev = mode === "development";
   const PORT = env.port || 5000;
+  const secretKeyForGenerateToken = "TKMZ8D1muIz54Ci0CGbb";
 
   const DB: BuildDB = {
     NAME: "online_store",
@@ -31,6 +32,7 @@ export default (env: BuildEnv) => {
     isDev,
     port: PORT,
     DB,
+    secretKeyForGenerateToken,
   });
   return config;
 };

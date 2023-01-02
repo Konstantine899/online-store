@@ -6,6 +6,7 @@ import ApiError from "shared/api/ApiError/ApiError";
 import { userEmailVereficate } from "../dal/userEmailVereficate";
 import { createUser } from "modules/User/dal/createUser";
 import { createBasket } from "../dal/createBasket";
+import { IBasket } from "modules/Basket";
 
 export const registrationUserDTO = async (
   request: Request,
@@ -17,6 +18,7 @@ export const registrationUserDTO = async (
     if (!email || !password) {
       return next(ApiError.badRequest(`Не корректный email или пароль`));
     }
+    // проверка существования пользователя с таким mail
     const candidate = await userEmailVereficate(email);
     if (candidate) {
       return next(
@@ -25,10 +27,14 @@ export const registrationUserDTO = async (
     }
     const hashPassword: string = await bcrypt.hash(password, 5);
     const user: IUser = await createUser({ email, role, hashPassword });
-    const basket = await createBasket(user.id);
-    const token = jwt.sign({ id: user.id, email: user.email, role }, "123", {
-      expiresIn: "24h",
-    });
+    const basket: IBasket = await createBasket(user.id);
+    const token = jwt.sign(
+      { id: user.id, email: user.email, role },
+      SECRET_KEY,
+      {
+        expiresIn: "24h",
+      }
+    );
     return response.json({ token });
   } catch (error) {
     console.log(error);

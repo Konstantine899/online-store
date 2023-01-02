@@ -27,4 +27,5 @@ export interface BuildOptions {
   isDev: boolean;
   port: number;
   DB: BuildDB;
+  secretKeyForGenerateToken: string;
 }

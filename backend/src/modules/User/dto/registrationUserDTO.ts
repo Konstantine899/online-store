@@ -1,12 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import { IUser } from "../model/schema";
 import ApiError from "shared/api/ApiError/ApiError";
 import { userEmailVereficate } from "../dal/userEmailVereficate";
-import { createUser } from "modules/User/dal/createUser";
+import { createUser } from "../dal/createUser";
 import { createBasket } from "../dal/createBasket";
-import { IBasket } from "modules/Basket";
+import { generateToken } from "shared/lib/generateToken";
 
 export const registrationUserDTO = async (
   request: Request,
@@ -26,15 +25,9 @@ export const registrationUserDTO = async (
       );
     }
     const hashPassword: string = await bcrypt.hash(password, 5);
-    const user: IUser = await createUser({ email, role, hashPassword });
-    const basket: IBasket = await createBasket(user.id);
-    const token = jwt.sign(
-      { id: user.id, email: user.email, role },
-      SECRET_KEY,
-      {
-        expiresIn: "24h",
-      }
-    );
+    const user = await createUser({ email, role, hashPassword });
+    const basket = await createBasket(user.id);
+    const token = generateToken({ id: user.id, email: user.email, role });
     return response.json({ token });
   } catch (error) {
     console.log(error);

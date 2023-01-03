@@ -1,10 +1,28 @@
 import { Router } from "express";
 import DeviceBrandController from "../controllers/deviceBrandController";
+import CheckRoleMiddleware, {
+  RoleUser,
+} from "shared/middleware/CheckRoleMiddleware";
 
 const deviceBrandRouter = Router();
-deviceBrandRouter.post("/create", DeviceBrandController.create);
+
+deviceBrandRouter.post(
+  "/create",
+  CheckRoleMiddleware(RoleUser.ADMIN), // Проверка роли пользователя
+  DeviceBrandController.create
+);
+
 deviceBrandRouter.get("/all", DeviceBrandController.getAll);
-deviceBrandRouter.delete("/delete", DeviceBrandController.remove);
-deviceBrandRouter.patch("/update", DeviceBrandController.update);
+
+deviceBrandRouter.delete(
+  "/delete",
+  CheckRoleMiddleware(RoleUser.ADMIN), // Проверка роли пользователя
+  DeviceBrandController.remove
+);
+deviceBrandRouter.patch(
+  "/update",
+  CheckRoleMiddleware(RoleUser.ADMIN), // Проверка роли пользователя
+  DeviceBrandController.update
+);
 
 export { deviceBrandRouter };

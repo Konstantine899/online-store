@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import path from "path";
 import ApiError from "shared/api/ApiError/ApiError";
 
-const fileExtLimiter = (allowedExtArray: string[]) => {
+const FileExtLimiter = (allowedExtArray: string[]) => {
   return (request: Request, response: Response, next: NextFunction) => {
     const files: any = request.files;
 
@@ -25,4 +25,4 @@ const fileExtLimiter = (allowedExtArray: string[]) => {
   };
 };
 
-export default fileExtLimiter;
+export default FileExtLimiter;

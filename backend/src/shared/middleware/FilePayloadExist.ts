@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import ApiError from "shared/api/ApiError/ApiError";
 
-const filePayloadExist = (
+const FilePayloadExist = (
   request: Request,
   response: Response,
   next: NextFunction
@@ -12,4 +12,4 @@ const filePayloadExist = (
   next();
 };
 
-export default filePayloadExist;
+export default FilePayloadExist;

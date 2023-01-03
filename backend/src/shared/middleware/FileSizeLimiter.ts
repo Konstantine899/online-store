@@ -4,7 +4,7 @@ import ApiError from "shared/api/ApiError/ApiError";
 const MB: number = 5;
 const FILE_SIZE_LIMITER: number = MB * 1024 * 1024;
 
-const fileSizeLimiter = (
+const FileSizeLimiter = (
   request: Request,
   response: Response,
   next: NextFunction
@@ -26,4 +26,4 @@ const fileSizeLimiter = (
   next();
 };
 
-export default fileSizeLimiter;
+export default FileSizeLimiter;

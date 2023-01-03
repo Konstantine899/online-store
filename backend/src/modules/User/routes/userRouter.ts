@@ -14,7 +14,7 @@ userRouter.get("/auth", AuthMiddleware, UserController.check);
 userRouter.delete(
   "/delete",
   CheckRoleMiddleware(RoleUser.ADMIN),
-  UserController.removeUserById
+  UserController.remove
 );
 
 export { userRouter };

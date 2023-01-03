@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { registrationUserDTO } from "modules/User/dto/registrationUserDTO";
 import { loginUserDTO } from "modules/User/dto/loginUserDTO";
 import { checkUser } from "modules/User/dto/checkUser";
+import { removalUserDTO } from "modules/User/dto/removalUserDTO";
 
 class UserController {
   async registration(request: Request, response: Response, next: NextFunction) {
@@ -17,15 +18,9 @@ class UserController {
     return await checkUser(request, response);
   }
 
-  async removeUserById(request: Request, response: Response) {
-    try {
-      // const id = request.query.id;
-      //
-      // if (!id) throw new Error("id не указан");
-      // логика удаления из бд
-    } catch (error) {
-      console.log(error);
-    }
+  // Удаление пользователя буду использовать только в development
+  async remove(request: Request, response: Response, next: NextFunction) {
+    return await removalUserDTO(request, response, next);
   }
 }
 export default new UserController();

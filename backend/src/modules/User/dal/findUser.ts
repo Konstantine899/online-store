@@ -1,7 +1,14 @@
-import { IUserOutput, User } from "modules/User";
+import { IUser, IUserOutput, User } from "modules/User";
 
-export const findUser = async (
-  email: string | undefined
-): Promise<IUserOutput | null> => {
-  return await User.findOne({ where: { email } });
+interface IPayload {
+  email?: string;
+}
+
+export const findUser = async (payload: IPayload): Promise<IUserOutput> => {
+  const { email } = payload;
+  let user;
+  if (email) {
+    user = await User.findOne({ where: { email } });
+  }
+  return user as IUser;
 };

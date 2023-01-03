@@ -11,7 +11,7 @@ export const loginUserDTO = async (
   next: NextFunction
 ) => {
   const { email, password, role }: IUser = request.body;
-  const user = await findUser(email);
+  const user = await findUser({ email });
   if (!user) {
     return next(ApiError.internal(`Пользователь с таким ${email} не найден`));
   }

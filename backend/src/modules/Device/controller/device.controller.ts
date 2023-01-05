@@ -1,28 +1,16 @@
 import * as DeviceService from "../service/device.service";
-import { Request, Response, NextFunction } from "express";
-import path from "path";
+import { NextFunction, Request, Response } from "express";
 import { IDeviceInput } from "../model/device.model";
 import ApiError from "shared/api/ApiError/ApiError";
 import { DeviceInfo } from "modules/DeviceInfo";
+import { createImg } from "modules/Device/controller/createImg";
 
 class DeviceController {
   async create(request: Request, response: Response, next: NextFunction) {
-    let { deviceTypeId, deviceBrandId, price, name, info }: IDeviceInput =
-      request.body;
-    const images: any = request.files;
-    // Перемещаю картинку в хранилище
-    Object.keys(images).forEach((key) => {
-      const filepath = path.join(FILES_PATH, images[key].name);
-      images[key].mv(filepath, (error: Error) => {
-        if (error) return next(ApiError.internal(error.message));
-      });
-    });
-
-    // Получаю значение картинки из массива
-    const img: string = Object.keys(images)
-      .map((key) => images[key].name)
-      .toString();
     try {
+      let { deviceTypeId, deviceBrandId, price, name, info }: IDeviceInput =
+        request.body;
+      const img = createImg(request, response, next);
       if (info) {
         await DeviceInfo.create({
           deviceId: Number(info.deviceId),
@@ -84,18 +72,8 @@ class DeviceController {
       const id: number = Number(request.query.id);
       const { deviceTypeId, deviceBrandId, price, name, info }: IDeviceInput =
         request.body;
-      const images: any = request.files;
-      // Перемещаю картинку в хранилище
-      Object.keys(images).forEach((key) => {
-        const filepath = path.join(FILES_PATH, images[key].name);
-        images[key].mv(filepath, (error: Error) => {
-          if (error) return next(ApiError.internal(error.message));
-        });
-      });
 
-      const img: string = Object.keys(images)
-        .map((key) => images[key].name)
-        .toString();
+      const img = createImg(request, response, next);
 
       const result = await DeviceService.update(id, {
         deviceTypeId: Number(deviceTypeId),

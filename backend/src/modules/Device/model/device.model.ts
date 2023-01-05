@@ -18,11 +18,12 @@ export interface IDevice {
 }
 
 // IDeviceInput это тип объекта передаваемый в sequelize
-export interface IDeviceInput
-  extends Optional<IDevice, "id" | "name" | "price" | "rating" | "img"> {}
-
+export type IDeviceInput = Optional<
+  IDevice,
+  "id" | "name" | "price" | "rating" | "img"
+>;
 // Определяет возвращаемый объект из БД в методах create, update, findOne
-export interface IDeviceOutput extends Required<IDevice> {}
+export type IDeviceOutput = Required<IDevice>;
 
 export class Device extends Model<IDevice, IDeviceInput> implements IDevice {
   public id!: number;
@@ -30,6 +31,11 @@ export class Device extends Model<IDevice, IDeviceInput> implements IDevice {
   public price!: number;
   public rating!: number;
   public img!: string;
+  public info!: IDeviceInfoInput;
+  public deviceTypeId!: number;
+  public deviceBrandId!: number;
+  public limit!: number;
+  public page!: number;
 
   // timestamps!
 
@@ -37,7 +43,6 @@ export class Device extends Model<IDevice, IDeviceInput> implements IDevice {
   public readonly updatedAt!: Date;
   public readonly deletedAt!: Date;
 }
-
 Device.init(
   {
     id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
@@ -67,8 +72,8 @@ BasketDevice.belongsTo(Device);
 
 Device.hasMany(DeviceInfo, {
   /* as: "info" псевдоним,
-   по которому получаю данные из таблицы DeviceInfo,
-    которые использую в Device при получении конкретного device по id */
+     по которому получаю данные из таблицы DeviceInfo,
+      которые использую в Device при получении конкретного device по id */
   as: "info",
   foreignKey: { name: "deviceId", allowNull: false, field: "device_id" },
 });

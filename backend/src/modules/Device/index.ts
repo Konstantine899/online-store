@@ -1,2 +1,7 @@
-export { Device, IDevice, IDeviceInput, IDeviceOutput } from "./model/schema";
-export { deviceRouter } from "./routes/deviceRouter";
+export { deviceRouter } from "./router/device.router";
+export {
+  Device,
+  IDevice,
+  IDeviceOutput,
+  IDeviceInput,
+} from "./model/device.model";

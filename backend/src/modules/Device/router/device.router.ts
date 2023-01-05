@@ -1,11 +1,11 @@
 import { Router } from "express";
-import DeviceController from "../controllers/deviceController";
-import FilePayloadExist from "shared/middleware/FilePayloadExist";
-import FileExtLimiter from "shared/middleware/FileExtLimiter";
-import FileSizeLimiter from "shared/middleware/FileSizeLimiter";
+import DeviceController from "../controller/device.controller";
 import CheckRoleMiddleware, {
   RoleUser,
 } from "shared/middleware/CheckRoleMiddleware";
+import FilePayloadExist from "shared/middleware/FilePayloadExist";
+import FileSizeLimiter from "shared/middleware/FileSizeLimiter";
+import FileExtLimiter from "shared/middleware/FileExtLimiter";
 
 const deviceRouter = Router();
 

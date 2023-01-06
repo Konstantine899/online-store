@@ -1,8 +1,5 @@
 import * as DeviceBrandDal from "./device-brand.dal";
-import {
-  IDeviceBrandInput,
-  IDeviceBrandOutput,
-} from "modules/DeviceBrand/device-brand.model";
+import { IDeviceBrandInput, IDeviceBrandOutput } from "./device-brand.model";
 
 export const create = async (
   payload: IDeviceBrandInput

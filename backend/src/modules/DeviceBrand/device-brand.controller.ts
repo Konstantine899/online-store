@@ -1,6 +1,6 @@
-import * as DeviceBrandService from "./device-brand.service";
 import { NextFunction, Request, Response } from "express";
-import { IDeviceBrandInput } from "modules/DeviceBrand/device-brand.model";
+import * as DeviceBrandService from "./device-brand.service";
+import { IDeviceBrandInput } from "./device-brand.model";
 import ApiError from "shared/api/ApiError/ApiError";
 
 class DeviceBrandController {

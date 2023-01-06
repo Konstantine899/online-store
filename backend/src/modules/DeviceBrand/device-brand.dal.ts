@@ -2,7 +2,7 @@ import {
   DeviceBrand,
   IDeviceBrandInput,
   IDeviceBrandOutput,
-} from "modules/DeviceBrand/device-brand.model";
+} from "./device-brand.model";
 
 export const createDeviceBrand = async (
   payload: IDeviceBrandInput

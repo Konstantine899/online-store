@@ -1,8 +1,5 @@
 import * as DeviceTypeDal from "./device-type.dal";
-import {
-  IDeviceTypeInput,
-  IDeviceTypeOutput,
-} from "modules/DeviceType/device-type.model";
+import { IDeviceTypeInput, IDeviceTypeOutput } from "./device-type.model";
 
 export const create = async (
   payload: IDeviceTypeInput

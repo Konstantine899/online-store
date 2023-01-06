@@ -1,5 +1,5 @@
-import * as DeviceTypeService from "./device-type.service";
 import { NextFunction, Request, Response } from "express";
+import * as DeviceTypeService from "./device-type.service";
 import { IDeviceTypeInput } from "./device-type.model";
 import ApiError from "shared/api/ApiError/ApiError";
 

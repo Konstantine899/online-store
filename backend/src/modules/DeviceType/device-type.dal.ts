@@ -2,7 +2,7 @@ import {
   DeviceType,
   IDeviceTypeInput,
   IDeviceTypeOutput,
-} from "modules/DeviceType/device-type.model";
+} from "./device-type.model";
 
 export const createDeviceType = async (
   payload: IDeviceTypeInput

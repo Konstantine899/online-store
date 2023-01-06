@@ -25,13 +25,6 @@ class DeviceBrandController {
   async update(request: Request, response: Response, next: NextFunction) {
     const id: number = Number(request.query.id);
     const { name }: IDeviceBrandInput = request.body;
-    if (!id) {
-      return next(
-        ApiError.badRequest(
-          "При обновлении произошла ошибка! Не корректно переданные данные для обновления"
-        )
-      );
-    }
     const result = await DeviceBrandService.update(id, { name });
     if (!result) {
       return next(ApiError.internal(`При обновлении бренда произошла ошибка`));
@@ -40,11 +33,11 @@ class DeviceBrandController {
   }
   async remove(request: Request, response: Response, next: NextFunction) {
     const id: number = Number(request.query.id);
-    if (!id) return next(ApiError.badRequest("Не указан id бренда"));
     const result = await DeviceBrandService.deleteById(id);
-    if (result) {
-      return response.json({ status: 200, message: "Бренд удален успешно" });
+    if (!result) {
+      return next(ApiError.internal(`При удалении бренда произошла ошибка`));
     }
+    return response.json({ status: 200, message: "Бренд удален успешно" });
   }
 }
 

@@ -2,7 +2,7 @@ import {
   DeviceType,
   IDeviceTypeInput,
   IDeviceTypeOutput,
-} from "../model/schema";
+} from "modules/DeviceType/device-type.model";
 
 export const createDeviceType = async (
   payload: IDeviceTypeInput
@@ -22,11 +22,9 @@ export const updateDeviceType = async (
   return await (deviceType as DeviceType).update(payload);
 };
 
-export const deleteDeviceType = async (
-  id: number
-): Promise<IDeviceTypeOutput[]> => {
-  await DeviceType.destroy({
+export const deleteDeviceType = async (id: number): Promise<boolean> => {
+  const type = await DeviceType.destroy({
     where: { id },
   });
-  return await DeviceType.findAll();
+  return !!type;
 };

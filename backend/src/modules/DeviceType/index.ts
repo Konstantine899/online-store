@@ -1,2 +1,2 @@
-export { DeviceType } from "./model/schema";
-export { deviceTypeRouter } from "./routes/deviceTypeRouter";
+export { deviceTypeRouter } from "./device-type.router";
+export { DeviceType } from "modules/DeviceType/device-type.model";

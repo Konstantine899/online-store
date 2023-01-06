@@ -1,5 +1,5 @@
 import { Router } from "express";
-import DeviceController from "../controller/device.controller";
+import DeviceController from "./device.controller";
 import CheckRoleMiddleware, {
   RoleUser,
 } from "shared/middleware/CheckRoleMiddleware";

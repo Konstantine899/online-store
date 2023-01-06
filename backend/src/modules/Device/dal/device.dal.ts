@@ -1,4 +1,4 @@
-import { Device, IDeviceInput, IDeviceOutput } from "../model/device.model";
+import { Device, IDeviceInput, IDeviceOutput } from "../device.model";
 import { IFilters } from "./device.types";
 import { DeviceInfo } from "modules/DeviceInfo";
 

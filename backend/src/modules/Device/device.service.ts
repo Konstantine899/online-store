@@ -1,6 +1,6 @@
-import * as DeviceDal from "../dal/device.dal";
-import { IDeviceInput, IDeviceOutput } from "../model/device.model";
-import { IFilters } from "../dal/device.types";
+import * as DeviceDal from "./dal/device.dal";
+import { IDeviceInput, IDeviceOutput } from "./device.model";
+import { IFilters } from "./dal/device.types";
 
 export const create = async (payload: IDeviceInput): Promise<IDeviceOutput> => {
   return await DeviceDal.createDevice(payload);

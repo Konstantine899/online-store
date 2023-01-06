@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import path from "path";
 import ApiError from "shared/api/ApiError/ApiError";
 
-export const createImg = (
+export const createFileImg = (
   request: Request,
   response: Response,
   next: NextFunction

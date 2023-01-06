@@ -1,16 +1,16 @@
-import * as DeviceService from "../service/device.service";
+import * as DeviceService from "./device.service";
 import { NextFunction, Request, Response } from "express";
-import { IDeviceInput } from "../model/device.model";
+import { IDeviceInput } from "./device.model";
 import ApiError from "shared/api/ApiError/ApiError";
 import { DeviceInfo } from "modules/DeviceInfo";
-import { createImg } from "modules/Device/controller/createImg";
+import { createFileImg } from "shared/lib/createFile";
 
 class DeviceController {
   async create(request: Request, response: Response, next: NextFunction) {
     try {
       let { deviceTypeId, deviceBrandId, price, name, info }: IDeviceInput =
         request.body;
-      const img = createImg(request, response, next);
+      const img = createFileImg(request, response, next);
       if (info) {
         await DeviceInfo.create({
           deviceId: Number(info.deviceId),
@@ -73,7 +73,7 @@ class DeviceController {
       const { deviceTypeId, deviceBrandId, price, name, info }: IDeviceInput =
         request.body;
 
-      const img = createImg(request, response, next);
+      const img = createFileImg(request, response, next);
 
       const result = await DeviceService.update(id, {
         deviceTypeId: Number(deviceTypeId),

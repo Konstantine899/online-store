@@ -1,8 +1,8 @@
 import { Router } from "express";
-import DeviceBrandController from "../controllers/deviceBrandController";
 import CheckRoleMiddleware, {
   RoleUser,
 } from "shared/middleware/CheckRoleMiddleware";
+import DeviceBrandController from "./device-brand.controller";
 
 const deviceBrandRouter = Router();
 

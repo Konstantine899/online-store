@@ -1,7 +1,7 @@
+export { deviceBrandRouter } from "./device-brand.router";
 export {
   DeviceBrand,
-  IDeviceBrand,
   IDeviceBrandOutput,
   IDeviceBrandInput,
-} from "./model/schema";
-export { deviceBrandRouter } from "./routes/deviceBrandRouter";
+  IDeviceBrand,
+} from "./device-brand.model";

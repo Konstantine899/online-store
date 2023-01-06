@@ -1,6 +1,1 @@
-export {
-  TypeBrand,
-  ITypeBrand,
-  ITypeBrandOutput,
-  ITypeBrandInput,
-} from "./model/schema";
+export { TypeBrand } from "./type-brand.model";

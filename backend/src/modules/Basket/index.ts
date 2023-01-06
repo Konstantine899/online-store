@@ -1,1 +1,1 @@
-export { Basket, IBasket, IBasketInput, IBasketOutput } from "./model/schema";
+export { Basket, IBasketOutput, IBasketInput, IBasket } from "./basket.model";

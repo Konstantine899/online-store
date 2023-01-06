@@ -1,1 +1,1 @@
-export { Rating, IRating, IRatingOutput, IRatingInput } from "./model/shema";
+export { Rating, IRatingInput, IRatingOutput, IRating } from "./rating.model";

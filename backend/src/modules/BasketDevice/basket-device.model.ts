@@ -11,7 +11,7 @@ export interface IBasketDeviceInput extends Optional<IBasketDevice, "id"> {}
 // Определяет возвращаемый объект из БД в методах create, update, findOne
 export interface IBasketDeviceOutput extends Required<IBasketDevice> {}
 
-export class BasketDevice
+export class BasketDeviceModel
   extends Model<IBasketDevice, IBasketDeviceInput>
   implements IBasketDevice
 {
@@ -23,7 +23,7 @@ export class BasketDevice
   public readonly deletedAt!: Date;
 }
 
-BasketDevice.init(
+BasketDeviceModel.init(
   {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   },

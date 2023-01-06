@@ -1,7 +1,7 @@
 import { User } from "modules/User";
 import { SyncOptions } from "sequelize/types/sequelize";
 import { Basket } from "modules/Basket";
-import { BasketDevice } from "modules/BasketDevice";
+import { BasketDeviceModel } from "modules/BasketDevice";
 import { Device } from "modules/Device";
 import { DeviceBrand } from "modules/DeviceBrand";
 import { DeviceInfo } from "modules/DeviceInfo";
@@ -13,7 +13,7 @@ const modelInit = async (options: SyncOptions) => {
   try {
     await User.sync(options);
     await Basket.sync(options);
-    await BasketDevice.sync(options);
+    await BasketDeviceModel.sync(options);
     await Device.sync(options);
     await DeviceBrand.sync(options);
     await DeviceInfo.sync(options);

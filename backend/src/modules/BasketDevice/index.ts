@@ -1,6 +1,6 @@
 export {
-  BasketDevice,
-  IBasketDevice,
-  IBasketDeviceInput,
+  BasketDeviceModel,
   IBasketDeviceOutput,
-} from "./model/schema";
+  IBasketDeviceInput,
+  IBasketDevice,
+} from "./basket-device.model";

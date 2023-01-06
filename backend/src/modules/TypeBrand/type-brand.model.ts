@@ -6,6 +6,7 @@ import { DeviceBrand } from "modules/DeviceBrand";
 export interface ITypeBrand {
   id: number;
 }
+
 //ITypeBrandInput это тип объекта передаваемый в sequelize
 export interface ITypeBrandInput extends Optional<ITypeBrand, "id"> {}
 

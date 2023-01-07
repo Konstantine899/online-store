@@ -1,5 +1,5 @@
 import { Router } from "express";
-import UserController from "../controllers/userController";
+import UserController from "./user.controller";
 import AuthMiddleware from "shared/middleware/AuthMiddleware";
 import CheckRoleMiddleware, {
   RoleUser,

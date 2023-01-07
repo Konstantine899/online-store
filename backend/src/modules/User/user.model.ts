@@ -11,11 +11,10 @@ export interface IUser {
 }
 
 //IUserInput это тип объекта передаваемый в sequelize
-export interface IUserInput
-  extends Optional<IUser, "id" | "email" | "password" | "role"> {}
+export type IUserInput = Optional<IUser, "id" | "email" | "password" | "role">;
 
 // Определяет возвращаемый объект из БД в методах create, update, findOne
-export interface IUserOutput extends Required<IUser> {}
+export type IUserOutput = Required<IUser>;
 
 export class User extends Model<IUser, IUserInput> implements IUser {
   public id!: number;

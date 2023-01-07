@@ -1,2 +1,2 @@
-export { User, IUser, IUserOutput, IUserInput } from "./model/schema";
-export { userRouter } from "./routes/userRouter";
+export { userRouter } from "./user.router";
+export { User, IUserInput, IUserOutput, IUser } from "./user.model";

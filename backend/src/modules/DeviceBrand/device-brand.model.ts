@@ -1,5 +1,6 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelizeConnection from "app/sequelize/config";
+import { Device } from "modules/Device";
 
 export interface IDeviceBrand {
   id: number;
@@ -38,3 +39,5 @@ DeviceBrand.init(
     indexes: [{ name: "device_brand", fields: ["name"] }],
   }
 );
+DeviceBrand.hasMany(Device);
+Device.belongsTo(DeviceBrand);

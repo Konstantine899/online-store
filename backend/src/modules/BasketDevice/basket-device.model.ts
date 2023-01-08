@@ -1,5 +1,7 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelizeConnection from "app/sequelize/config";
+import { Basket } from "modules/Basket";
+import { Device } from "modules/Device";
 
 export interface IBasketDevice {
   id: number;
@@ -11,7 +13,7 @@ export interface IBasketDeviceInput extends Optional<IBasketDevice, "id"> {}
 // Определяет возвращаемый объект из БД в методах create, update, findOne
 export interface IBasketDeviceOutput extends Required<IBasketDevice> {}
 
-export class BasketDeviceModel
+export class BasketDevice
   extends Model<IBasketDevice, IBasketDeviceInput>
   implements IBasketDevice
 {
@@ -23,7 +25,7 @@ export class BasketDeviceModel
   public readonly deletedAt!: Date;
 }
 
-BasketDeviceModel.init(
+BasketDevice.init(
   {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   },
@@ -34,3 +36,7 @@ BasketDeviceModel.init(
     modelName: "basket_device",
   }
 );
+
+Basket.belongsToMany(Device, { through: BasketDevice });
+
+Device.belongsToMany(Basket, { through: BasketDevice });

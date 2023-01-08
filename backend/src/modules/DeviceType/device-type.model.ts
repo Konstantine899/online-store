@@ -1,7 +1,6 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelizeConnection from "app/sequelize/config";
 import { Device } from "modules/Device";
-import { DeviceBrand } from "modules/DeviceBrand";
 
 export interface IDeviceType {
   id: number;
@@ -46,20 +45,5 @@ DeviceType.init(
   }
 );
 
-DeviceType.hasMany(Device, {
-  foreignKey: {
-    name: "deviceTypeId",
-    allowNull: false,
-    field: "device_type_id",
-  },
-});
+DeviceType.hasMany(Device);
 Device.belongsTo(DeviceType);
-
-DeviceBrand.hasMany(Device, {
-  foreignKey: {
-    name: "deviceBrandId",
-    allowNull: false,
-    field: "device_brand_id",
-  },
-});
-Device.belongsTo(DeviceBrand);

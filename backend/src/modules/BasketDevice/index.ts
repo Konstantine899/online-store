@@ -1,5 +1,5 @@
 export {
-  BasketDeviceModel,
+  BasketDevice,
   IBasketDeviceOutput,
   IBasketDeviceInput,
   IBasketDevice,

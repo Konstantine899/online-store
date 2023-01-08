@@ -1,6 +1,6 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelizeConnection from "app/sequelize/config";
-import { BasketDeviceModel } from "modules/BasketDevice";
+import { Device } from "modules/Device";
 
 export interface IBasket {
   id: number;
@@ -33,7 +33,8 @@ Basket.init(
   }
 );
 
-Basket.hasMany(BasketDeviceModel, {
-  foreignKey: { name: "basketId", allowNull: false, field: "basket_id" },
-});
-BasketDeviceModel.belongsTo(Basket);
+Basket.hasMany(Device);
+Device.belongsTo(Basket);
+
+Device.hasMany(Basket);
+Basket.belongsTo(Device);

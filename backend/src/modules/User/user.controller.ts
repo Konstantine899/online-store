@@ -9,7 +9,7 @@ import { RoleUser } from "shared/middleware/CheckRoleMiddleware";
 export class UserController {
   async registration(request: Request, response: Response, next: NextFunction) {
     try {
-      const { email, password, role = "USER" }: IUser = request.body;
+      const { email, password, role = RoleUser.USER }: IUser = request.body;
       if (!email || !password) {
         return next(ApiError.badRequest(`Не правильный email или пароль`));
       }
@@ -23,7 +23,11 @@ export class UserController {
       const hashPassword: string = await bcrypt.hash(password, 5);
       const user = await UserService.createUser({ email, role, hashPassword });
       const basket = await UserService.createBasket(user.id);
-      const token = generateToken({ id: user.id, email: user.email, role });
+      const token = generateToken({
+        id: user.id,
+        email: user.email,
+        role: user.role,
+      });
       return response.json({ token });
     } catch (error) {
       console.log(error);
@@ -32,7 +36,7 @@ export class UserController {
 
   async login(request: Request, response: Response, next: NextFunction) {
     try {
-      const { email, password, role }: IUser = request.body;
+      const { email, password }: IUser = request.body;
       const user = await UserService.findUserByEmail(email);
       if (!user) {
         return next(
@@ -44,15 +48,20 @@ export class UserController {
       if (!comparePassword) {
         return next(ApiError.badRequest(`Не верный пароль`));
       }
-      const token = generateToken({ id: user.id, email: user.email, role });
+      const token = generateToken({
+        id: user.id,
+        email: user.email,
+        role: user.role,
+      });
       return response.json({ token });
     } catch (error) {
       console.log(error);
     }
   }
+
   async check(request: Request, response: Response, next: NextFunction) {
     try {
-      const { id, email, role }: IUser = request.user;
+      const { id, email, role = RoleUser.USER }: IUser = request.user;
       /*Если мы попадаем сюда, то пользователь прошел аутентификацию в authMiddleware.
        * после чего мы должны создать новый токен и передать на клиент*/
       const token = generateToken({ id, email, role });
@@ -63,6 +72,7 @@ export class UserController {
       console.log(error);
     }
   }
+
   async remove(request: Request, response: Response, next: NextFunction) {
     try {
       const { email }: IUser = request.body;

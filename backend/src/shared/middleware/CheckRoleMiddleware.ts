@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
+import ApiError from "shared/api/ApiError/ApiError";
 
 export enum RoleUser {
   ADMIN = "ADMIN",
@@ -14,14 +15,12 @@ function CheckRoleMiddleware(role: string) {
       const decodedToken = jwt.verify(token, SECRET_KEY) as JwtPayload; // расшифровываю token
       if (decodedToken.role !== role) {
         //Если в расшифрованном token роль пользователя != ADMIN
-        return response
-          .status(403)
-          .json({ message: "У вас не достаточно прав доступа" });
+        return next(ApiError.forbidden("Не достаточно прав доступа"));
       }
       request.user = decodedToken;
       next();
     } catch (error) {
-      response.status(401).json({ message: "Пользователь не авторизован" });
+      next(ApiError.forbidden((error as Error).message));
     }
   };
 }

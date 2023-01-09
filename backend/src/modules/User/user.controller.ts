@@ -9,7 +9,7 @@ import { RoleUser } from "shared/middleware/CheckRoleMiddleware";
 export class UserController {
   async registration(request: Request, response: Response, next: NextFunction) {
     try {
-      const { email, password, role }: IUser = request.body;
+      const { email, password, role = "USER" }: IUser = request.body;
       if (!email || !password) {
         return next(ApiError.badRequest(`Не правильный email или пароль`));
       }

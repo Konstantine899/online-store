@@ -5,6 +5,7 @@ import { Device } from "modules/Device";
 
 export interface IBasketDevice {
   id: number;
+  quantity: number;
 }
 
 //IBasketDeviceInput это тип объекта передаваемый в sequelize
@@ -18,6 +19,7 @@ export class BasketDevice
   implements IBasketDevice
 {
   public id!: number;
+  public quantity!: number;
 
   // timestamps!
   public readonly createdAt!: Date;
@@ -28,6 +30,7 @@ export class BasketDevice
 BasketDevice.init(
   {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    quantity: { type: DataTypes.INTEGER, defaultValue: 1 }, // количество устройств
   },
   {
     timestamps: true,

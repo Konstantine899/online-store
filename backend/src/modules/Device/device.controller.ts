@@ -34,7 +34,7 @@ class DeviceController {
   async getAll(request: Request, response: Response, next: NextFunction) {
     try {
       let { deviceBrandId, deviceTypeId, limit, page }: Partial<IDeviceInput> =
-        request.query;
+        request.params;
 
       page = Number(page) || 1;
       limit = Number(limit) || 9;
@@ -58,7 +58,7 @@ class DeviceController {
 
   async getOne(request: Request, response: Response, next: NextFunction) {
     try {
-      const id: number = Number(request.query.id);
+      const id: number = Number(request.params.id);
       if (!id) return next(ApiError.badRequest(`id устройства не передан`));
       const result = await DeviceService.getById(id);
       if (!result) return next(ApiError.internal(`Устройство не найдено`));
@@ -70,7 +70,7 @@ class DeviceController {
 
   async update(request: Request, response: Response, next: NextFunction) {
     try {
-      const id: number = Number(request.query.id);
+      const id: number = Number(request.params.id);
       const { deviceTypeId, deviceBrandId, price, name, info }: IDeviceInput =
         request.body;
 
@@ -86,22 +86,21 @@ class DeviceController {
       });
       return response.json(result);
     } catch (error) {
-      console.log(error);
+      next(ApiError.internal((error as Error).message));
     }
   }
 
   async remove(request: Request, response: Response, next: NextFunction) {
     try {
-      const id: number = Number(request.query.id);
+      const id: number = Number(request.params.id);
       if (!id) return next(ApiError.badRequest("Не указан id девайса"));
       const result = await DeviceService.deleteById(id);
       if (!result)
         return next(
-          ApiError.internal(`При удалении устройство произошло ошибка`)
+          ApiError.internal(`При удалении устройства произошло ошибка`)
         );
       if (result)
         return response.json({
-          status: 200,
           message: "Устройство удалено успешно",
         });
     } catch (error) {

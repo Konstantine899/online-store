@@ -18,10 +18,25 @@ deviceRouter.post(
   DeviceController.create
 );
 deviceRouter.get("/all", DeviceController.getAll);
-deviceRouter.get("/one", DeviceController.getOne);
+
+deviceRouter.get(
+  "/all/deviceTypeId/:deviceTypeId([0-9]+)",
+  DeviceController.getAll
+);
+
+deviceRouter.get(
+  "/all/deviceBrandId/:deviceBrandId([0-9]+)",
+  DeviceController.getAll
+);
+
+deviceRouter.get(
+  "/all/deviceBrandId/:deviceBrandId([0-9]+)/deviceTypeId/:deviceTypeId([0-9]+)",
+  DeviceController.getAll
+);
+deviceRouter.get("/one/:id([0-9]+)", DeviceController.getOne);
 
 deviceRouter.patch(
-  "/update",
+  "/update/:id([0-9]+)",
   CheckRoleMiddleware(RoleUser.ADMIN), // Проверка роли пользователя
   FilePayloadExist,
   FileSizeLimiter,
@@ -29,7 +44,7 @@ deviceRouter.patch(
   DeviceController.update
 );
 deviceRouter.delete(
-  "/delete",
+  "/delete/:id([0-9]+)",
   CheckRoleMiddleware(RoleUser.ADMIN), // Проверка роли пользователя
   DeviceController.remove
 );

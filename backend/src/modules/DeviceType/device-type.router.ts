@@ -15,13 +15,13 @@ deviceTypeRouter.post(
 deviceTypeRouter.get("/all", DeviceTypeController.getAll);
 
 deviceTypeRouter.delete(
-  "/delete",
+  "/delete/:id([0-9]+)",
   CheckRoleMiddleware(RoleUser.ADMIN), // Проверка роли пользователя
   DeviceTypeController.remove
 );
 
 deviceTypeRouter.patch(
-  "/update",
+  "/update/:id([0-9]+)",
   CheckRoleMiddleware(RoleUser.ADMIN), // Проверка роли пользователя
   DeviceTypeController.update
 );

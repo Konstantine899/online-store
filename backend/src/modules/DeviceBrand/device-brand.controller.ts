@@ -15,6 +15,17 @@ class DeviceBrandController {
       console.log(error);
     }
   }
+  async getOne(request: Request, response: Response, next: NextFunction) {
+    try {
+      const id = Number(request.params.id);
+      if (!id) return next(ApiError.badRequest(`id бренда не передан`));
+      const brand = await DeviceBrandService.getById(id);
+      if (!brand) return next(ApiError.internal(`Бренд не найден`));
+      return response.json(brand);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   async getAll(request: Request, response: Response, next: NextFunction) {
     const result = await DeviceBrandService.getAll();
     if (!result) {
@@ -23,7 +34,7 @@ class DeviceBrandController {
     return response.json(result);
   }
   async update(request: Request, response: Response, next: NextFunction) {
-    const id: number = Number(request.query.id);
+    const id: number = Number(request.params.id);
     const { name }: IDeviceBrandInput = request.body;
     const result = await DeviceBrandService.update(id, { name });
     if (!result) {
@@ -32,12 +43,12 @@ class DeviceBrandController {
     return response.json(result);
   }
   async remove(request: Request, response: Response, next: NextFunction) {
-    const id: number = Number(request.query.id);
+    const id: number = Number(request.params.id);
     const result = await DeviceBrandService.deleteById(id);
     if (!result) {
       return next(ApiError.internal(`При удалении бренда произошла ошибка`));
     }
-    return response.json({ status: 200, message: "Бренд удален успешно" });
+    return response.json({ message: "Бренд удален успешно" });
   }
 }
 

@@ -14,13 +14,15 @@ deviceBrandRouter.post(
 
 deviceBrandRouter.get("/all", DeviceBrandController.getAll);
 
+deviceBrandRouter.get("/one/:id([0-9]+)", DeviceBrandController.getOne);
+
 deviceBrandRouter.delete(
-  "/delete",
+  "/delete/:id([0-9]+)",
   CheckRoleMiddleware(RoleUser.ADMIN), // Проверка роли пользователя
   DeviceBrandController.remove
 );
 deviceBrandRouter.patch(
-  "/update",
+  "/update/:id([0-9]+)",
   CheckRoleMiddleware(RoleUser.ADMIN), // Проверка роли пользователя
   DeviceBrandController.update
 );

@@ -29,7 +29,7 @@ class DeviceTypeController {
   }
   async update(request: Request, response: Response, next: NextFunction) {
     try {
-      const id: number = Number(request.query.id);
+      const id: number = Number(request.params.id);
       const { name }: IDeviceTypeInput = request.body;
       const result = await DeviceTypeService.update(id, { name });
       if (!result) {
@@ -41,7 +41,7 @@ class DeviceTypeController {
     }
   }
   async remove(request: Request, response: Response, next: NextFunction) {
-    const id: number = Number(request.query.id);
+    const id: number = Number(request.params.id);
     const result = await DeviceTypeService.deleteById(id);
     if (!result) {
       return next(ApiError.internal(`При удалении типа произошла ошибка`));

@@ -13,10 +13,14 @@ export const createDeviceBrand = async (
 export const getAllDevicesBrands = async (): Promise<IDeviceBrandOutput[]> => {
   return await DeviceBrand.findAll();
 };
+export const getOneDeviceBrand = async (
+  id: number
+): Promise<IDeviceBrandOutput | null> => {
+  return await DeviceBrand.findOne({ where: { id } });
+};
 
-export const removeDeviceBrandById = async (id: number): Promise<boolean> => {
-  const brand = await DeviceBrand.destroy({ where: { id } });
-  return !!brand;
+export const removeDeviceBrandById = async (id: number): Promise<number> => {
+  return await DeviceBrand.destroy({ where: { id } });
 };
 
 export const updateDeviceBrand = async (

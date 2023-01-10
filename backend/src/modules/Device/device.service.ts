@@ -17,7 +17,7 @@ export const getById = async (id: number): Promise<IDeviceOutput | null> => {
   return await DeviceDal.getDeviceById(id);
 };
 
-export const deleteById = async (id: number): Promise<boolean> => {
+export const deleteById = async (id: number): Promise<number> => {
   return await DeviceDal.deleteDeviceById(id);
 };
 

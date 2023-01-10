@@ -8,9 +8,8 @@ export const createDevice = async (
   return await Device.create(payload);
 };
 
-export const deleteDeviceById = async (id: number): Promise<boolean> => {
-  const result = Device.destroy({ where: { id } });
-  return !!result;
+export const deleteDeviceById = async (id: number): Promise<number> => {
+  return await Device.destroy({ where: { id } });
 };
 
 export const getDeviceById = async (

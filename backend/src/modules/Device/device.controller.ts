@@ -59,6 +59,7 @@ class DeviceController {
   async getOne(request: Request, response: Response, next: NextFunction) {
     try {
       const id: number = Number(request.query.id);
+      if (!id) return next(ApiError.badRequest(`id устройства не передан`));
       const result = await DeviceService.getById(id);
       if (!result) return next(ApiError.internal(`Устройство не найдено`));
       return response.json(result);

@@ -12,16 +12,24 @@ export const createUser = async (
   return await User.create({ email, role, password: hashPassword });
 };
 
+export const getAllUsers = async (): Promise<IUserOutput[]> => {
+  return await User.findAll();
+};
+
+export const findUserById = async (id: number): Promise<IUserOutput | null> => {
+  return await User.findOne({ where: { id } });
+};
+
 export const findUserByEmail = async (
   email: string
 ): Promise<IUserOutput | null> => {
   return await User.findOne({ where: { email } });
 };
 
-export const removalUserEmail = async (email: string): Promise<boolean> => {
-  const result = await User.destroy({ where: { email } });
-  return !!result;
-};
 export const userEmailVerification = async (email: string) => {
   return await User.findOne({ where: { email } });
+};
+
+export const removeUserById = async (id: number): Promise<number> => {
+  return await User.destroy({ where: { id } });
 };

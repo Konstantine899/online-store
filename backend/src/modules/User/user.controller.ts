@@ -60,6 +60,9 @@ export class UserController {
   }
 
   async check(request: Request, response: Response, next: NextFunction) {
+    /*При переходе на любую страницу будет происходить проверка авторизации пользователя
+     * Если пользователь авторизован то функция check будет постоянно перезаписывать токен
+     * */
     try {
       const { id, email, role = RoleUser.USER }: IUser = request.user;
       /*Если мы попадаем сюда, то пользователь прошел аутентификацию в authMiddleware.
@@ -73,31 +76,49 @@ export class UserController {
     }
   }
 
-  async remove(request: Request, response: Response, next: NextFunction) {
+  async removeUserById(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) {
+    const id = Number(request.params.id);
+    if (!id) return next(ApiError.badRequest(`id не передан`));
+    const user = await UserService.findUserById(id);
+    if (!user) return next(ApiError.internal(`Пользователь не найден`));
+    if (user.role === RoleUser.ADMIN) {
+      return next(
+        ApiError.internal(
+          `Удаление не возможно так как пользователь является администратором`
+        )
+      );
+    }
+    await UserService.removeUserById(id);
+    return response.json({
+      message: `Пользователь ${user.email} успешно удален`,
+    });
+  }
+
+  async getAll(request: Request, response: Response, next: NextFunction) {
     try {
-      const { email }: IUser = request.body;
-      const user = await UserService.findUserByEmail(email);
-      if (!user) {
+      const users = await UserService.findUsers();
+      if (!users)
         return next(
-          ApiError.internal(`Пользователь с email:${email} не найден`)
+          ApiError.internal(`При поиске пользователей произошла ошибка`)
         );
-      }
-      if (user.role === RoleUser.ADMIN) {
-        return next(
-          ApiError.internal(
-            `Вы не можете удалить данного пользователя так как он является администратором`
-          )
-        );
-      }
-      if (user) {
-        await UserService.removalUserEmail(email);
-        const findRemovedUser = await UserService.findUserByEmail(email);
-        if (!findRemovedUser) {
-          return response
-            .status(200)
-            .json({ message: `Пользователь с email: ${email} удален успешно` });
-        }
-      }
+      return response.json(users);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async getUserById(request: Request, response: Response, next: NextFunction) {
+    try {
+      const id = Number(request.params.id);
+      console.log("ID", id);
+      if (!id) return next(ApiError.badRequest(`id пользователя не передан`));
+      const user = await UserService.findUserById(id);
+      if (!user) return next(ApiError.internal(`Пользователь не найден`));
+      return response.json(user);
     } catch (error) {
       console.log(error);
     }

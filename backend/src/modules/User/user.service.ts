@@ -13,16 +13,24 @@ export const createUser = async (
   return await UserDal.createUser(payload);
 };
 
+export const findUsers = async (): Promise<IUserOutput[]> => {
+  return await UserDal.getAllUsers();
+};
+
+export const findUserById = async (id: number): Promise<IUserOutput | null> => {
+  return await UserDal.findUserById(id);
+};
+
 export const findUserByEmail = async (
   email: string
 ): Promise<IUserOutput | null> => {
   return await UserDal.findUserByEmail(email);
 };
 
-export const removalUserEmail = async (email: string): Promise<boolean> => {
-  return await UserDal.removalUserEmail(email);
-};
-
 export const userEmailVerification = async (email: string) => {
   return await UserDal.userEmailVerification(email);
+};
+
+export const removeUserById = async (id: number): Promise<number> => {
+  return await UserDal.removeUserById(id);
 };

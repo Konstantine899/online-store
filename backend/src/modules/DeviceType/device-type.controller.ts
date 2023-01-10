@@ -27,6 +27,15 @@ class DeviceTypeController {
       console.log(error);
     }
   }
+
+  async getOne(request: Request, response: Response, next: NextFunction) {
+    const id = Number(request.params.id);
+    if (!id) return next(ApiError.badRequest(`id типа не передан`));
+    const type = await DeviceTypeService.getById(id);
+    if (!type) return next(ApiError.internal(`Тип не найден`));
+    return response.json(type);
+  }
+
   async update(request: Request, response: Response, next: NextFunction) {
     try {
       const id: number = Number(request.params.id);
@@ -46,7 +55,7 @@ class DeviceTypeController {
     if (!result) {
       return next(ApiError.internal(`При удалении типа произошла ошибка`));
     }
-    return response.json({ status: 200, message: "Тип удален успешно" });
+    return response.json({ message: "Тип удален успешно" });
   }
 }
 

@@ -11,6 +11,12 @@ export const getAll = async (): Promise<IDeviceTypeOutput[]> => {
   return await DeviceTypeDal.getAllDevicesTypes();
 };
 
+export const getById = async (
+  id: number
+): Promise<IDeviceTypeOutput | null> => {
+  return await DeviceTypeDal.getOneDeviceType(id);
+};
+
 export const update = async (
   id: number,
   payload: Partial<IDeviceTypeInput>
@@ -18,6 +24,6 @@ export const update = async (
   return await DeviceTypeDal.updateDeviceType(id, payload);
 };
 
-export const deleteById = async (id: number): Promise<boolean> => {
+export const deleteById = async (id: number): Promise<number> => {
   return await DeviceTypeDal.deleteDeviceType(id);
 };

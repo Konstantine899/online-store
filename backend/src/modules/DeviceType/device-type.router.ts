@@ -14,6 +14,8 @@ deviceTypeRouter.post(
 
 deviceTypeRouter.get("/all", DeviceTypeController.getAll);
 
+deviceTypeRouter.get("/one/:id([0-9]+)", DeviceTypeController.getOne);
+
 deviceTypeRouter.delete(
   "/delete/:id([0-9]+)",
   CheckRoleMiddleware(RoleUser.ADMIN), // Проверка роли пользователя
